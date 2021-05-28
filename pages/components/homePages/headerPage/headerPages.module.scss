@@ -1,0 +1,115 @@
+/*
+*BZ0006            040121     create a Slider for website
+*BZ0007            050921     Edit size Menu for  
+*BZ0008            050921     Edit Text for Adrress  header
+*BZ0009            050921     Click "Login for User"  change font size Text.
+*BZ00010           050921     Fix Top Header Position.
+************************************************************************
+*/
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap');
+#header{
+    position: relative;
+    .header{
+        height: 200px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        .container{
+            //BEGIN BZ00010
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #223a47;;
+            //END BZ00010
+            padding: 1rem;
+            display: grid;
+            //dotted, dashed, double, groove, ridge, inset, outset, none, hidde, "dotted dashed solid double;"
+            border: 1px double #2c2c2c;
+            // BEGIN BZ0007
+            grid-template-columns: 420px 600px 420px;
+            // END BZ0007
+            .logo{
+                width: 275px;
+                font-size: 25px;
+                color: #fff;
+                font-family: 'Dancing Script', cursive;
+                display: block;
+                margin-left: 3rem;
+            }
+            .headerContact{
+                padding: 1rem;
+                font-size: 18px;
+                font-weight: 500;
+                display: grid;
+                text-align: center;
+                grid-template-rows: 45% 45%;
+                .headerContactAdress{
+                    display: grid;
+                    grid-template-columns: 50% 50%;
+                    //BEGIN BZ0008               
+                    .headerContactAdressForTel{
+                        text-align: left;
+                        font-family: "Fredericka the Great";
+                        color: #fff;
+
+                    }
+                    .headerContactAdressForAddress{
+                        text-align: right;
+                        font-family: "Fredericka the Great";
+                        color: #fff;
+
+                    }
+                    //END BZ0008               
+
+                }
+                .reservationButton{
+                    font-family: "Fredericka the Great";
+                    border: 1px dotted #f27257;
+                    display: inline-block;
+                    color: #fff;
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.25rem;
+                    transition: 0.25s ease all;
+                    cursor: pointer;
+                    flex-direction: none;
+                    &:hover{
+                        background-color: #f27257;
+                        color: white;
+                        //BEGIN BZ0009
+                        font-size: 25px;  
+                        transition: 0.25s ease all;
+                        //END BZ0009
+
+                    }
+                }
+            }
+            .headerSaleIcon{
+                text-align: center;
+                padding: 1rem;
+                .headerSaleIcoList{
+                    text-align: center;
+                    .facebook{
+                        // background-color: blue;
+                        font-size: 40px;
+                        margin-left: 0.5rem;
+                        color: #fff;
+                        //hover giảm màu
+                            }
+                }
+            }
+        }
+    }
+    /* Begin BZ0006*/ 
+    #slider{
+        height: 600px;
+        .iframe{
+            position: inherit;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    }
+    /* END BZ0006*/
+    
+}

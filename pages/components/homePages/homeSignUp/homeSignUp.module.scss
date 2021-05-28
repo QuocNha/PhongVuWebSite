@@ -1,0 +1,90 @@
+#homeSignUp{
+    background: #223A47;
+    padding-top: 150px;
+    padding-bottom: 300px;
+    
+    .titleHolder{
+        width: 80%;
+        padding-bottom: 60px;
+        border-bottom: 1px solid rgba($color:#223A47, $alpha: 0.5);
+        margin-bottom: 60px;
+       
+    }
+    h2{
+        line-height: 1;
+       color: white; 
+       margin-top: 0px;
+       margin-bottom: 8px;
+       padding-top: 108px;
+       
+        span{
+            font-size: 160px;
+            display: block;
+            font-family: 'Pacifico';
+            color: #FFB5A6;
+            transform: translate(140px,30px);
+            @media(max-width:1440px) {
+                font-size: 120px;
+                transform: translate(120px,15px);
+
+            }
+            @media(max-width:992px) {
+                font-size: 60px;
+                transform: translate(60px,0px);
+                
+            }
+        }
+        font-size: 72px;
+        font-family: 'Fredericka the Great';
+        transform: translate(140px,30px);
+        @media(max-width:1440px) {
+            font-size: 60px;
+            
+            
+        }
+        @media(max-width:992px) {
+            font-size: 36px;
+            transform: translate(130px,15px);
+            
+        }
+    }
+    .container{
+       text-align: left;
+       padding: 1rem;
+       margin-left: 30%;
+       margin-right: 15%;
+       position: initial;
+        input{         
+            padding: 1em;
+            font-size: 15px;
+            color: black;
+            background: white;
+            height: auto;
+            min-height: auto;
+            line-height: initial;
+        }
+        label{
+           
+        padding: 1rem;
+        font-family: "Fredericka the Great";
+        cursor: pointer;
+        font-size: 40px;
+         color: #f27257;
+         transition: ease  0.25s all ;
+        }
+        .input{
+            width:50%;
+        
+        }
+        .button{
+            margin-top: 20px;
+            margin-bottom: 10px;
+            margin-right: 10px;
+            margin-left: 0px;
+            font-size: 20px;
+        
+        }
+        
+    }
+   
+}
