@@ -5,16 +5,26 @@
 *BZ0008            050921     Edit Text for Adrress  header
 ************************************************************************
 */
-import React from "react";
+import React,{useEffect} from "react";
 import styles from './headerPages.module.scss';
 import Link from 'next/link';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons//ShoppingCart';
+import { useSelector, useDispatch } from "react-redux";
 
+import { getUser } from '../../../../redux/actions/userActions';
 
 
 const HeaderPage = () =>{
+  const dispatch = useDispatch();
+  const state = useSelector((state :any) => state.users);
+
+  useEffect(() => {
+    dispatch(getUser("tao nek"));
+  
+}, [dispatch]);
+console.log("state"+state)
   return<React.Fragment>
    <div id={styles.header}>
      <div className={styles.header}>
