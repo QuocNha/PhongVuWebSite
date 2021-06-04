@@ -9,6 +9,7 @@ import HeaderPage  from './headerPage';
 const HomePage = () =>{
     const a = useState(5);
     const number1111111111 = ()=>{
+     
 
     }  
     useEffect(() => {
@@ -17,6 +18,7 @@ const HomePage = () =>{
       },[] )
  return <React.Fragment>
      <HeaderPage key="HeaderPage"></HeaderPage>
+     
      <BodyPage key="BodyPage"></BodyPage>
      <FooterPage key="FooterPage"></FooterPage> 
  </React.Fragment>

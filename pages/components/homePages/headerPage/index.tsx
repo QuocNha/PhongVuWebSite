@@ -53,10 +53,10 @@ console.log("state"+state)
        </div>
      </div>
      {/* Begin BZ0006 */}
-     <div id={styles.slider}>
+     {/* <div id={styles.slider}>
      <iframe className={styles.iframe} src="https://my.matterport.com/show/?m=Re2dgaSVCRj&amp;hl=0&amp;title=1&amp;tourcta=1&amp;vrcoll=0&amp;dh=1&amp;mt=1&amp;lang=null" frameBorder="0" allow="vr" ></iframe> 
 
-     </div>
+     </div> */}
       {/* END BZ0006 */}
   </div>
   </React.Fragment>

@@ -1,3 +1,7 @@
+/*
+*BZ0015            060321     Setup redux-saga for project
+************************************************************************
+*/
 export const actionTypes = {
     LOAD_DATA: "LOAD_DATA",
     LOAD_DATA1: "LOAD_DATA1",

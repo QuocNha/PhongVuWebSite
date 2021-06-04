@@ -6,6 +6,10 @@ const initialState = {
   error: null
 };
 
+/*
+*BZ0015            060321     Setup redux-saga for project
+************************************************************************
+*/
 const successLoadData = (draft: any, { data }: any) => {
   draft.users = data;
 };
