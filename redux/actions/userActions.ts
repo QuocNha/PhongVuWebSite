@@ -1,5 +1,6 @@
 /*
-*BZ0015            060321     Setup redux-saga for project
+*BZ0015            060321     Setup redux-saga for projec
+*BZ00017            050621     Create validaton for Yup to login user 
 ************************************************************************
 */
 export const actionTypes = {
@@ -12,8 +13,11 @@ export const actionTypes = {
     id: number
     name: string,
 }
+//BEGIN BZ00017 
+export interface ErrorUser {
+  error: [],
+}
 export function getUser(users) {
-    console.log("get user" +users);
     return {
       type: actionTypes.LOAD_DATA,
       payload:users
@@ -32,11 +36,12 @@ export function getUser(users) {
     };
   }
   
-  export function loadDataFailure(error: any) {
+  export function loadDataFailure(data: ErrorUser) {
     return {
       type: actionTypes.LOAD_DATA_FAILURE,
       payload: {
-        error: error
+        error: data
       }
     };
   }
+  //END BZ00017

@@ -1,8 +1,3 @@
-/*Issua             dd/mm/yy  Technical approach
-
-*BZ0001            032421     Install typeScript  for project
-
-***************************************************/
 {
   "compilerOptions": {
     "target": "es5",
@@ -27,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/constant.config.api/product.js", "backEnd/server.js", "backEnd/api/use.js", "backEnd/api/use.js", "backEnd/model/User.js", "backEnd/api/UserController/Resign.js", "pages/components/homePages/index.js"  ],
+, "pages/constant.config.api/product.js", "backEnd/server.js", "backEnd/api/use.js", "backEnd/api/use.js", "backEnd/model/user.ts", "backEnd/api/UserController/Resign.js"  ],
   "exclude": [
     "node_modules"
   ]

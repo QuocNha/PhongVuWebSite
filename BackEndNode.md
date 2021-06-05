@@ -1,15 +1,28 @@
 Link for note C:\Users\Admin\Desktop\Nestjs .
 /*
-*BZ0015            060321     Setup redux-saga for project
+*BZ0016            060321     Setup Server  connect MongGoDB
 ************************************************************************
 */
-install redux-saga.
-Step 1 :
-Create redux folder for project :
-   actions folder: Contains all the acctions when there is a request from the user
-   Reducers folder:Contains all data will be saved to the store via combineReducers
-   sagas folder:when an acction is called. It will go through sagas to get data from those then pass to reducers
-   strores file:Where to store data
-Step 2 : View call action to API 's re-dux:useSelector, useDispatch ,useState, UserEffect
-Step 3 :Connect DB Using Express and axios
- 
+https://www.udemy.com/course/mern-stack-front-to-back/
+ Step 1: 
+install mongoose:
+npm install --save mongoose bcryptjs config expressnodemo concurrently express-validator gravatar jsonwebtoken nodemon morgan
+step 2 :
+Create Server  connect databse to  dbConnect.ts
+Step3 :
+Create  model for table user to user.ts
+step 4: 
+Create foler config for  create ulr conect with server
+Step 5 :
+Create file to Resful API (get ,post,put,delete) for res and rep 's customer
+/*
+*BZ0017            060321     Setup json web token when login user.
+************************************************************************
+*/
+Step1 : Introduce
+Được Sử dụng trong việc trao đổi dữ liệu trên mang thong co chế mã hóa 
+Json Web token : header, payload, sinature
+data + secert : token
+token+ secert :data
+
+When user login  has Token initialized.

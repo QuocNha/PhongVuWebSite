@@ -17,8 +17,7 @@ const HomePage = () =>{
         number1111111111();
       },[] )
  return <React.Fragment>
-     <HeaderPage key="HeaderPage"></HeaderPage>
-     
+     <HeaderPage key="HeaderPage"></HeaderPage>   
      <BodyPage key="BodyPage"></BodyPage>
      <FooterPage key="FooterPage"></FooterPage> 
  </React.Fragment>

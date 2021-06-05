@@ -17,14 +17,6 @@ import { getUser } from '../../../../redux/actions/userActions';
 
 
 const HeaderPage = () =>{
-  const dispatch = useDispatch();
-  const state = useSelector((state :any) => state.users);
-
-  useEffect(() => {
-    dispatch(getUser("tao nek"));
-  
-}, [dispatch]);
-console.log("state"+state)
   return<React.Fragment>
    <div id={styles.header}>
      <div className={styles.header}>

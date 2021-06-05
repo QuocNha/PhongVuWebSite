@@ -1,3 +1,7 @@
+/*
+*BZ00017            050621     Create validaton for Yup to login user 
+************************************************************************
+*/
 #homeSignUp{
     background: #223A47;
     // padding-top: 150px;
@@ -86,5 +90,11 @@
         }
         
     }
+    //BEGIN BZ00017
+    .errorText{
+        color: red;
+        font-size: 18px;
+    }
+    //END BZ00017
    
 }

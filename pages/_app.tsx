@@ -4,8 +4,10 @@
 */
 import '../styles/globals.css'
 import wrapper from '../redux/stores'
+import { AppProps } from 'next/app';
+import React from 'react';
 
-function MyApp({ Component, pageProps }) {
+const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return <Component {...pageProps} />
 }
 
