@@ -8,16 +8,15 @@ const loginUser  = async ( {res,req,body: { email, password }}) => {
     const user  = await User.findOne({
       email
       });
-    mongoose.connection.close();
     if (!user) {
         return res.status(400).json({
           data: null,
           errors: 'Không tìm thấy địa chỉ mail ' + email ,
         });
     }
-     console.log("user",user)
+
     const isValidPassword = await user.comparePassword(password, user.password);
-      console.log("user",isValidPassword);
+
       if (!isValidPassword) {
         return res.status(400).json({
           data: null,
@@ -31,12 +30,12 @@ const loginUser  = async ( {res,req,body: { email, password }}) => {
     },process.env.NODE_ENV,{
         expiresIn:"1h"
     });
-    console.log("token",req);
-    console.log("token",token);
-    const decode = jwt.verify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InF1b2NuaGFAZ21haWwuY29tIiwiaWQiOiI2MDBkM2M1MzBhODM5NzA3MjBlNTFjNzYiLCJpYXQiOjE2MjI4OTQ5MDcsImV4cCI6MTYyMjg5ODUwN30.70fzW3AHlt3yC7yiWleeTmTmyjsB_GITjDfqpuM-S1g",process.env.NODE_ENV);
-    console.log("decode"+JSON.stringify(decode));
-    const decode1 = jwt.verify(token,process.env.NODE_ENV);
-    console.log("decode"+JSON.stringify(decode1));
+    // console.log("token",req);
+    // console.log("token",token);
+    // const decode = jwt.verify("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InF1b2NuaGFAZ21haWwuY29tIiwiaWQiOiI2MDBkM2M1MzBhODM5NzA3MjBlNTFjNzYiLCJpYXQiOjE2MjI4OTQ5MDcsImV4cCI6MTYyMjg5ODUwN30.70fzW3AHlt3yC7yiWleeTmTmyjsB_GITjDfqpuM-S1g",process.env.NODE_ENV);
+    // console.log("decode"+JSON.stringify(decode));
+    // const decode1 = jwt.verify(token,process.env.NODE_ENV);
+    // console.log("decode"+JSON.stringify(decode1));
       res.setHeader('Set-Cookie', serialize('user-token', token, {
         httpOnly: true,
         maxAge: 604800, // 1 week
