@@ -1,0 +1,20 @@
+#containerHeader{
+   
+}
+#containerBody{
+    display: grid;
+    grid-template-columns:20% 80%;
+    .containerBodyLeft{
+
+
+    }
+    .containerBodyRight{
+        .containerBodyRightTile{
+            padding:1rem;
+        }
+        .containerBodyRightDataUser{
+            padding: 1rem;
+        }
+
+    }
+}

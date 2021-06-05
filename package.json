@@ -15,6 +15,7 @@
     "@hookform/resolvers": "^2.5.0",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
+    "antd": "^4.16.1",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.2.0",
@@ -27,7 +28,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.12",
     "morgan": "^1.10.0",
-    "next": "10.0.9",
+    "next": "^10.2.3",
     "next-images": "^1.7.0",
     "next-redux-wrapper": "^6.0.2",
     "nodemon": "^2.0.7",
@@ -42,6 +43,12 @@
     "request": "^2.88.2",
     "sass": "^1.32.8",
     "yup": "^0.32.9"
+    
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
+    ]
   },
   "devDependencies": {
     "@types/node": "^14.14.35",

@@ -4,6 +4,7 @@ Link for note C:\Users\Admin\Desktop\Nestjs .
 ************************************************************************
 */
 https://www.udemy.com/course/mern-stack-front-to-back/
+https://dashboard.heroku.com/apps/order-demo-nextjs/deploy/github
  Step 1: 
 install mongoose:
 npm install --save mongoose bcryptjs config expressnodemo concurrently express-validator gravatar jsonwebtoken nodemon morgan
