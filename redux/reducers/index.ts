@@ -4,8 +4,11 @@
 */
 import { combineReducers } from 'redux';
 
-import users from './userReducers';
+import users from './userLoginReducers';
+import usersGetALL from './userReducer';
+
 
 export default combineReducers({
-    users
+    users,
+    usersGetALL
 });

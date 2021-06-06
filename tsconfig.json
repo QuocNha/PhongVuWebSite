@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/constant.config.api/product.js", "backEnd/server.js", "backEnd/api/use.js", "backEnd/api/use.js", "backEnd/model/user.ts", "backEnd/api/UserController/Resign.js"  ],
+, "pages/constant.config.api/product.js", "backEnd/server.js", "backEnd/api/use.js", "backEnd/api/use.js", "backEnd/model/user.js", "backEnd/api/UserController/Resign.js"  ],
   "exclude": [
     "node_modules"
   ]

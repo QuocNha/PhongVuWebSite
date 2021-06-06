@@ -14,9 +14,14 @@ import ShoppingCartIcon from '@material-ui/icons//ShoppingCart';
 import { useSelector, useDispatch } from "react-redux";
 
 import { getUser } from '../../../../redux/actions/userActions';
+import { Empty,Tag } from "antd";
+import Router from 'next/router';
 
+const HeaderPage = (props:any) =>{
+  const hadelerLoseUser = (eventkey) =>{
+    Router.push('/'); 
 
-const HeaderPage = () =>{
+  }
   return<React.Fragment>
    <div id={styles.header}>
      <div className={styles.header}>
@@ -37,9 +42,11 @@ const HeaderPage = () =>{
          </div>
          <div className={styles.headerSaleIcon}>
          <div className={styles.headerSaleIcoList}>
-         <Link href="/" ><a> <FacebookIcon className={styles.facebook} /></a></Link>
          <Link href="/" ><a> <AccountCircleIcon className={styles.facebook} /></a></Link>
-         <Link href="/" ><a> <ShoppingCartIcon className={styles.facebook} /></a></Link>
+         <div>{props && props !=Empty? <Tag key="tab" closable   onClose={hadelerLoseUser}>
+            {props.data
+                      }
+    </Tag>:""}</div>
          </div>
          </div>
        </div>

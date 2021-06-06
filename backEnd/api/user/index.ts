@@ -1,5 +1,6 @@
 /*
 *BZ0017            060321     Setup json web token when login user.
+*BZ00019           060621     Using Token login for next reset
 ************************************************************************
 */
 const mongoose =require('mongoose');
@@ -10,8 +11,11 @@ import  createApiHandler, {
     CheckeeHandler,
 } from '../../../utils/create-api-handler';
 import loginUser from './handlers/loginUser';
+import CheckTokenForloginUser from './handlers/CheckTokenForloginUser';
+import getAllUser from './handlers/getAllUser';
+
 export type CustomerHandlers = {
-    loginUser
+    loginUser,CheckTokenForloginUser,getAllUser
 }
 const loginAPI = async ( req,
     res,
@@ -19,13 +23,24 @@ const loginAPI = async ( req,
 		try {
 			if (req.method === 'POST') {
                 const body = { ...req.body }
-                console.log("req.body1",req.headers.cookie);
-				return await handlers['loginUser']({ req, res, /* config, */ body })
+                // console.log("req.body1",req);
+				//BEGIN BZ00019
+				if(req.body.check_token===true){
+					return await handlers['CheckTokenForloginUser']({ req, res, /* config, */ body })	
+				}else {
+					return await handlers['loginUser']({ req, res, /* config, */ body })
+				}
+			    //END BZ00019
 			}
 			if (req.method === 'PUT') {
                 const body = { ...req.body }
-                console.log("req.body updateUser",req.body)
+                // console.log("req.body updateUser",req.body);
 				return await handlers['updateUser']({ req, res, /* config, */ body })
+			}
+			if (req.method === 'GET') {
+                const body = { ...req.body }
+                console.log("req.body getAllUser",req.body);
+				return await handlers['getAllUser']({ req, res, /* config, */ body })
 			}
 		} catch (error) {
 			console.error(error)
@@ -33,6 +48,6 @@ const loginAPI = async ( req,
 		}
 	}
 
-export const handlers = { loginUser/* , addEmployee */ }
+export const handlers = { loginUser,CheckTokenForloginUser,getAllUser/* , addEmployee */ }
 
 export default createApiHandler(loginAPI, handlers, {})
