@@ -1,3 +1,8 @@
+/*
+*BZ00021           060621     Paganation for List User
+
+************************************************************************
+*/
 import dbConnect from '../../../../utils/dbConnect';
 import jwt from 'jsonwebtoken';
 import User from "../../../model/user";
@@ -5,9 +10,14 @@ import User from "../../../model/user";
 const getAllUser  = async ( {res,req,body: { user_cookies , check_token }}) => {
     let result={data:[]};
     await dbConnect(); 
-        const user = await User.find({}).sort({
+    //BEGIN BZ00021
+    const limit:number=+req.query.limit;
+        const user = await User.find({}).skip((limit * req.query.page) - req.query.limit).limit(limit) 
+        .sort({
             createdAt: "desc",
           });
+        //   console.log("req.query",req.query.page);
+        //   console.log("req.query",user);
           for(let i=0 ;i<user.length;i++){
             result.data.push(
                 {
@@ -18,7 +28,8 @@ const getAllUser  = async ( {res,req,body: { user_cookies , check_token }}) => {
                 }
             )
          }
-         console.log("user get all user",user);
+    //END BZ00021 
+        //  console.log("user get all user",user);
          try {   
         }catch(error){
             return res.status(400).json({

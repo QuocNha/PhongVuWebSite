@@ -3,58 +3,58 @@
 ************************************************************************
 */
 import type { NextApiHandler, NextApiRequest, NextApiResponse } from 'next'
-// import { CheckeeConfig, getConfig } from '..'
+// import { PhongVuConfig, getConfig } from '..'
 
-export type CheckeeApiHandler<
+export type PhongVuApiHandler<
   T = any,
-  H extends CheckeeHandlers = {},
+  H extends PhongVuHandlers = {},
   Options extends {} = {}
 > = (
   req: NextApiRequest,
-  res: NextApiResponse<CheckeeApiResponse<T>>,
-  // config: CheckeeConfig,
+  res: NextApiResponse<PhongVuApiResponse<T>>,
+  // config: PhongVuConfig,
   handlers: H,
   // Custom configs that may be used by a particular handler
   options: Options
 ) => void | Promise<void>
 
-// export interface CheckeeApiHandler2<
+// export interface PhongVuApiHandler<
 //   T = any,
-//   H extends CheckeeHandlers = {},
+//   H extends PhongVuHandlers = {},
 //   Options extends {} = {}
 // > {
 //   (
 //     req: NextApiRequest,
-//     res: NextApiResponse<CheckeeApiResponse<T>>,
-//     // config: CheckeeConfig,
+//     res: NextApiResponse<PhongVuApiResponse<T>>,
+//     // config: PhongVuConfig,
 //     handlers: H,
 //     // Custom configs that may be used by a particular handler
 //     options: Options,
 //   ): void | Promise<void>
 // }
 
-export type CheckeeHandler<T = any, Body = null> = (options: {
+export type PhongVuHandler<T = any, Body = null> = (options: {
   req: NextApiRequest
-  res: NextApiResponse<CheckeeApiResponse<T>>
+  res: NextApiResponse<PhongVuApiResponse<T>>
   // config: CheckeeConfig
   body: Body
 }) => void | Promise<void>
 
-export type CheckeeHandlers<T = any> = {
-  [k: string]: CheckeeHandler<T, any>
+export type PhongVuHandlers<T = any> = {
+  [k: string]: PhongVuHandler<T, any>
 }
 
-export type CheckeeApiResponse<T> = {
+export type PhongVuApiResponse<T> = {
   data: T | null
   errors?: { message: string; code?: string }[]
 }
 
 export default function createApiHandler<
   T = any,
-  H extends CheckeeHandlers = {},
+  H extends PhongVuHandlers = {},
   Options extends {} = {}
 >(
-  handler: CheckeeApiHandler<T, H, Options>,
+  handler: PhongVuApiHandler<T, H, Options>,
   handlers: H,
   defaultOptions: Options
 ) {

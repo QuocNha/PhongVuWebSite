@@ -51,6 +51,11 @@ var  UserSchema =  new mongoose.Schema({
          enum: ['SuperAdmin', 'Owner'],
          default: 'SuperAdmin'
      },
+     createAt: {
+        type: Date,
+        required: true,
+        default: Date.now 
+    },
 
 });
 UserSchema.methods.comparePassword = async function (password, passwordbefor) {

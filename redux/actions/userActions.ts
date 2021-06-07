@@ -3,6 +3,7 @@
 *BZ00017           050621     Create validaton for Yup to login user 
 *BZ00019           060621     Using Token login for next reset
 *BZ00020            060621     Get All User
+*BZ00021            060621     Paganation for List User
 
 ************************************************************************
 */
@@ -75,10 +76,14 @@ export function getUser(users) {
   }
   //END BZ00019
  //BEGIN BZ00020
-  export function  getAllUser() {
+  export function  getAllUser(page,limit) {
     return {
       type: actionTypes.GET_ALL_USER,
-      payload:{}
+      //BEGIN BZ00021
+      payload:{
+        page:page,
+        limit:limit
+      }//END BZ00021
 
     };
   }

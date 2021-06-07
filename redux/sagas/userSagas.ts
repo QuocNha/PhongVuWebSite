@@ -3,6 +3,7 @@
 *BZ00017           050621     Create validaton for Yup to login user
 *BZ00019           060621     Using Token login for next reset
 *BZ00020            060621     Get All User
+*BZ00021            060621     Paganation for List User
 
 ************************************************************************
 */
@@ -47,8 +48,7 @@ function* loadDataCheckToken(name:any) {
 //BEGIN BZ00020
 function* loadDataGetAllUser(payload:any) {
   try {
-    const response = yield call(getAllUserAPI);
-      
+    const response = yield call(getAllUserAPI,payload.payload.page,payload.payload.limit);//BZ00021
     if(response!=null && response.status==400){
        yield put(loadDataFailure(response.data)); 
     }else if(response!=null && response.status==200){

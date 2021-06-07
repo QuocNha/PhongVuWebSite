@@ -3,9 +3,10 @@
 *BZ00018            050621     Create Page For admin User 
 *BZ00019            060621     Using Token login for next reset
 *BZ00020            060621     Get All User
+*BZ00021            060621     Paganation for List User
 ************************************************************************
 */
-import React,{useEffect, useState} from'react';
+import React,{useEffect, useState,useMemo} from'react';
 import HeaderPage  from '../headerPage';
 import { useSelector, useDispatch } from "react-redux";// BZ00016
 import Router from 'next/router';
@@ -20,7 +21,22 @@ const HomePage = () =>{
     const usersGetALL = useSelector((state :any) => state.usersGetALL);
     const [isLoadingViewOrderHistories,setIsLoadingViewOrderHistories] = useState(false);
     const [listUser,setListUser] = useState([]);
+    //BEGIN BZ00021
+    const [page,setPage] = useState<number>(1);
+    const [limit,setLimit] = useState<number>(10);
+    
+    //END BZ00021
     const dispatch = useDispatch();
+    const handlersClickPageChange= async (e) =>{
+        dispatch(getAllUser(e,limit));
+        
+    }
+    //BZ00021
+    const computeExpensivePage = page => {
+        return page;
+      };
+   //BZ00021 
+        const memoPage = useMemo(() => computeExpensivePage(page), [page]);
     // console.log("user",user)
     const columns=[
         {
@@ -45,7 +61,7 @@ const HomePage = () =>{
     useEffect(() => {
         //BEGIN  BZ00020 
         // setIsLoadingViewOrderHistories(true);
-            dispatch(getAllUser());
+            dispatch(getAllUser(page,limit));
             // setIsLoadingViewOrderHistories(false);
         //END  BZ00020
         if (!(user.users)) {
@@ -55,11 +71,11 @@ const HomePage = () =>{
             // Router.push('/');
             //END BZ00019 
         }
-      }, []);
+      }, [page]);
 
-      console.log("listUser",listUser);
-      console.log("listUser",usersGetALL);
-      console.log("user",user);
+    //   console.log("listUser",listUser);
+    //   console.log("listUser",usersGetALL);
+    //   console.log("user",user);
       
  return <React.Fragment>
      <div id={styles.containerHeader}>
@@ -99,14 +115,19 @@ const HomePage = () =>{
                <h1>User List</h1>
             </div>
             <div className={styles.containerBodyRightDataUser}>
+            {/* BEGIN BZ00020 */}
             <Table
                 //  loading={isLoadingViewOrderHistories}
                 bordered
                 columns={columns}
                  dataSource={usersGetALL?usersGetALL.listUser:[]}
-                // pagination={defaultPageSize}                
+                 pagination={{
+                    defaultCurrent:1,
+                    total:50,
+                    onChange:handlersClickPageChange
+                }}                
                 />
-
+            {/* BEGIN BZ00020 */}
             </div>
         </div>
        
