@@ -18,7 +18,7 @@ async function loginUser(user:any) {
         password: user.userPasword,
     };
     
-    console.log("param",param)
+    // console.log("param",param)
     await axios.post(
         LOGINUSER,param
         

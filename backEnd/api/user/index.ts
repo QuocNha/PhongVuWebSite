@@ -2,6 +2,8 @@
 *BZ0017            060321     Setup json web token when login user.
 *BZ00019           060621     Using Token login for next reset
 *BZ00021           060621     Paganation for List User
+*BZ00025           080621     Create AddUser API
+
 
 ************************************************************************
 */
@@ -14,9 +16,10 @@ import  createApiHandler, {
 import loginUser from './handlers/loginUser';
 import CheckTokenForloginUser from './handlers/CheckTokenForloginUser';
 import getAllUser from './handlers/getAllUser';
+import addUser from './handlers/addUser';
 
 export type CustomerHandlers = {
-    loginUser,CheckTokenForloginUser,getAllUser
+    loginUser,CheckTokenForloginUser,getAllUser,addUser
 }
 const loginAPI = async ( req,
     res,
@@ -26,9 +29,17 @@ const loginAPI = async ( req,
                 const body = { ...req.body }
                 // console.log("req.body1",req);
 				//BEGIN BZ00019
-				if(req.body.check_token===true){
-					return await handlers['CheckTokenForloginUser']({ req, res, /* config, */ body })	
-				}else {
+				console.log("req.body1",req.body)
+				if(req.body.check_token && req.body.check_token===true){
+					return await handlers['CheckTokenForloginUser']({ req, res, /* config, */ body });
+				//BEGIN BZ00025		
+				}else if(req.body.check_Add_User === true){
+					
+					return await handlers['addUser']({ req, res, /* config, */ body })	
+
+				}
+				//END BZ00025
+				else {
 					return await handlers['loginUser']({ req, res, /* config, */ body })
 				}
 			    //END BZ00019
@@ -51,6 +62,6 @@ const loginAPI = async ( req,
 		}
 	}
 
-export const handlers = { loginUser,CheckTokenForloginUser,getAllUser/* , addEmployee */ }
+export const handlers = { loginUser,CheckTokenForloginUser,getAllUser,addUser/* , addEmployee */ }
 
 export default createApiHandler(loginAPI, handlers, {})

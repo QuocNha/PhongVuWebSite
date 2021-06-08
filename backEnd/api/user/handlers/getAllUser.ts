@@ -12,9 +12,12 @@ const getAllUser  = async ( {res,req,body: { user_cookies , check_token }}) => {
     await dbConnect(); 
     //BEGIN BZ00021
     const limit:number=+req.query.limit;
+        const userAllDataLength=(await User.find({}).sort({
+            createdAt: "desc",
+          })).length;
         const user = await User.find({}).skip((limit * req.query.page) - req.query.limit).limit(limit) 
         .sort({
-            createdAt: "desc",
+            createAt: "desc",
           });
         //   console.log("req.query",req.query.page);
         //   console.log("req.query",user);
@@ -25,6 +28,7 @@ const getAllUser  = async ( {res,req,body: { user_cookies , check_token }}) => {
                     userName:user[i].email,
                     number:i+1,
                     userRole:user[i].userRole,
+                    img:user[i].img
                 }
             )
          }
@@ -39,6 +43,7 @@ const getAllUser  = async ( {res,req,body: { user_cookies , check_token }}) => {
         }
          return res.status(200).json({
              data: result.data,
+             dataLenght: userAllDataLength,
              errors: [{message: 'Get list susscess.'}],
          })
           

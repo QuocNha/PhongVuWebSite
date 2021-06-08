@@ -29,7 +29,8 @@ var  UserSchema =  new mongoose.Schema({
      password: {
          type: String,
          required: [true, 'Your password is required'],
-         max: 100
+         max: 100,
+         default:'$2a$10$2rJntrb522MRezLL1tUdsuP5vWiw/nAES//.KaZq5dRG4/uzDdal2'
      },
      address1:{
          type:String
@@ -42,8 +43,8 @@ var  UserSchema =  new mongoose.Schema({
      },
      userType: {
          type: String,
-         enum: ['SuperAdmin', 'Normal'],
-         default: 'Normal'
+         enum: ['Manager', 'Staff'],
+         default: 'Staff'
        },
   
      userRole: {
@@ -56,6 +57,10 @@ var  UserSchema =  new mongoose.Schema({
         required: true,
         default: Date.now 
     },
+    img :{
+        type: String
+
+    }
 
 });
 UserSchema.methods.comparePassword = async function (password, passwordbefor) {

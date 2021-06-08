@@ -12,4 +12,6 @@ Create redux folder for project :
    strores file:Where to store data
 Step 2 : View call action to API 's re-dux:useSelector, useDispatch ,useState, UserEffect
 Step 3 :Connect DB Using Express and axios
- 
+*BZ00023            070621     Convert files to Base64 in React
+*BZ00024            080621     Create validation for userPages using Formik and Yub
+*BZ00025            080621     Create AddUser API

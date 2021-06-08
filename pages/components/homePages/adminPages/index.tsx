@@ -4,6 +4,7 @@
 *BZ00019            060621     Using Token login for next reset
 *BZ00020            060621     Get All User
 *BZ00021            060621     Paganation for List User
+*BZ00022            070621     Create addUserPages
 ************************************************************************
 */
 import React,{useEffect, useState,useMemo} from'react';
@@ -14,16 +15,21 @@ import {getUser,checkTokenUser,getAllUser} from '../../../../redux/actions/userA
 import styles from './adminPases.module.scss';
 import { Menu, Table ,Divider } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-
+import AddUserPages from "./addUserPages"
 const { SubMenu } = Menu;
 const HomePage = () =>{
     const user = useSelector((state :any) => state.users);
     const usersGetALL = useSelector((state :any) => state.usersGetALL);
+    const [checkAddPages,setCheckAddPages] = useState(true);
+    
     const [isLoadingViewOrderHistories,setIsLoadingViewOrderHistories] = useState(false);
     const [listUser,setListUser] = useState([]);
     //BEGIN BZ00021
     const [page,setPage] = useState<number>(1);
     const [limit,setLimit] = useState<number>(10);
+
+    //addUserPages, listUserPages
+    const [pageUser,setPageUser] = useState<String>("listUserPages");
     
     //END BZ00021
     const dispatch = useDispatch();
@@ -31,12 +37,23 @@ const HomePage = () =>{
         dispatch(getAllUser(e,limit));
         
     }
+    const handlersClickPageAddUserChange= async (e) =>{
+        setPageUser("addUserPages");
+
+    }
+    const handlersClickPageListUserPages= async (e) =>{
+        setPageUser("listUserPages");
+
+    }
+    
     //BZ00021
     const computeExpensivePage = page => {
         return page;
       };
    //BZ00021 
         const memoPage = useMemo(() => computeExpensivePage(page), [page]);
+        const memoPageChange = useMemo(() => computeExpensivePage(pageUser), [pageUser]);
+
     // console.log("user",user)
     const columns=[
         {
@@ -56,6 +73,17 @@ const HomePage = () =>{
             dataIndex: "userRole",
             key: "userRole",
             // ...this.getColumnSearchProps("content"),
+        },
+        {
+            title: "IMG",
+            dataIndex: "img",
+            key: "img",
+            render: (text) => {
+                //console.log("Text"+text);
+                  return (
+                         <div><img src={text} alt="avatar" style={{ width: '100%' }} /></div>
+                     )
+                 }
         }
     ]
     useEffect(() => {
@@ -93,10 +121,10 @@ const HomePage = () =>{
       >
            <SubMenu key="sub1" icon={<MailOutlined />} title="User">
             <Menu.ItemGroup key="g1">
-            <Menu.Item key="1" icon={<MailOutlined />}>List User</Menu.Item>
-              <Menu.Item key="2" icon={<MailOutlined />}>Add User</Menu.Item>
-              <Menu.Item key="3" icon={<MailOutlined />}>Delete User</Menu.Item>
-              <Menu.Item key="4"icon={<MailOutlined />}>Update User</Menu.Item>
+            <Menu.Item key="1" icon={<MailOutlined />} onClick={handlersClickPageListUserPages}>List User</Menu.Item>
+              <Menu.Item key="2" icon={<MailOutlined />} onClick={handlersClickPageAddUserChange}>Add User</Menu.Item>
+              {/* <Menu.Item key="3" icon={<MailOutlined />}>Delete User</Menu.Item>
+              <Menu.Item key="4"icon={<MailOutlined />}>Update User</Menu.Item> */}
             </Menu.ItemGroup> 
            </SubMenu>
            <Divider key="Divider" style={{height:'5px',background:"white"}}></Divider>
@@ -110,7 +138,9 @@ const HomePage = () =>{
         </Menu>
              
         </div>
-        <div className={styles.containerBodyRight}>
+        {pageUser && pageUser==="listUserPages"?
+        <React.Fragment>
+            <div className={styles.containerBodyRight}>
             <div className={styles.containerBodyRightTile}>
                <h1>User List</h1>
             </div>
@@ -120,16 +150,27 @@ const HomePage = () =>{
                 //  loading={isLoadingViewOrderHistories}
                 bordered
                 columns={columns}
-                 dataSource={usersGetALL?usersGetALL.listUser:[]}
+                 dataSource={
+                      usersGetALL && usersGetALL.listUser ?usersGetALL.listUser.data:
+                     []}
                  pagination={{
                     defaultCurrent:1,
-                    total:50,
+                    total: usersGetALL && usersGetALL.listUser ?usersGetALL.listUser.userAllDataLength:0,
                     onChange:handlersClickPageChange
                 }}                
                 />
             {/* BEGIN BZ00020 */}
             </div>
         </div>
+
+        </React.Fragment>
+        :
+        // BEGIN BZ00022
+        pageUser && pageUser==="addUserPages"?
+        <React.Fragment>
+            <AddUserPages key="AddUserPages" checkAddPages={true}/>
+        </React.Fragment>:""}
+        {/* END BZ00022 */}
        
      </div>
      

@@ -4,14 +4,17 @@
 *BZ00019           060621     Using Token login for next reset
 *BZ00020            060621     Get All User
 *BZ00021            060621     Paganation for List User
+*BZ00025            080621     Create AddUser API
+
 
 ************************************************************************
 */
 import { call, put, takeLatest } from "redux-saga/effects";
-import { actionTypes, loadDataFailure, loadDataSuccess,loadDataGetAllUseSuccess } from "../actions/userActions";
+import { actionTypes, loadDataFailure, loadDataSuccess,loadDataGetAllUseSuccess,loadDataAddUseSuccess,loadDataAddUseFaild } from "../actions/userActions";
 import loginUser from "../../constant.config.api/loginUser";
 import checkToKen from "../../constant.config.api/checkToKen";
 import getAllUserAPI from "../../constant.config.api/getAllUserAPI";
+import addUserAPI from "../../constant.config.api/addUserAPI";//BZ00025
 
 import Router from 'next/router';
 function* loadDataSaga(name:any) {
@@ -52,7 +55,7 @@ function* loadDataGetAllUser(payload:any) {
     if(response!=null && response.status==400){
        yield put(loadDataFailure(response.data)); 
     }else if(response!=null && response.status==200){
-       yield put(loadDataGetAllUseSuccess(response.data.data));
+       yield put(loadDataGetAllUseSuccess(response.data.data,response.data.dataLenght));
     }
     
   } catch (err) {
@@ -60,10 +63,28 @@ function* loadDataGetAllUser(payload:any) {
   }
 }
 //END BZ00020
+//BEGIN BZ00025
+function* loadDataAddUser(payload:any) {
+  try {
+    // console.log("payload.user",payload.payload);
+    const response = yield call(addUserAPI,payload);
+    if(response!=null && response.status==400){
+      yield put(loadDataAddUseFaild(false)); 
+    }else if(response!=null && response.status==200){
+        yield put(loadDataAddUseSuccess(true));
+    }
+    
+  } catch (err) {
+     yield put(loadDataAddUseFaild(false));
+  }
+}
+//END BZ00025
+
 const sagas = [
   takeLatest(actionTypes.LOAD_DATA, loadDataSaga),
   takeLatest(actionTypes.CHECK_TOKEN, loadDataCheckToken),//BZ00019
   takeLatest(actionTypes.GET_ALL_USER, loadDataGetAllUser),
+  // takeLatest(actionTypes.ADD_USER, loadDataAddUser),
 ];
 
 export default sagas;

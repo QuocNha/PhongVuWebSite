@@ -9,7 +9,6 @@ import React,{useEffect,useState,useMemo} from "react";
 import styles from './homeSignUp.module.scss';
 //BEGIN BZ00012
 import { isEmptyChildren, useFormik } from 'formik';
-
 import * as Yup from "yup";
 // END BZ00012
 import { InputLabel,Input,Grid,TextField, Divider, Typography, Button, Paper, MenuItem, Collapse, IconButton, Badge, ListItem, ListItemIcon, List, ListItemText } from '@material-ui/core';
@@ -68,7 +67,7 @@ const homeSignUp = () =>{
       useEffect(() => {
             
     }, []);
-    console.log("state111111111111111",state);
+    // console.log("state111111111111111",state);
     //END BZ00016
     return <React.Fragment>
         <div id={styles.homeSignUp}>

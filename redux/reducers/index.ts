@@ -10,5 +10,6 @@ import usersGetALL from './userReducer';
 
 export default combineReducers({
     users,
-    usersGetALL
+    usersGetALL,
+    
 });

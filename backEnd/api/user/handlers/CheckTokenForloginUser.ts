@@ -17,7 +17,7 @@ const CheckTokenForloginUser  = async ( {res,req,body: { user_cookies , check_to
       res.status(500).json({ data: null, errors: [{ message: "Cant notfound  dataUser" }], })
 
      }else if(user){
-        console.log("user11111111111"+user);
+        // console.log("user11111111111"+user);
       return res.status(200).json({ data: user.email,token:user_cookies })
      }else{
       res.status(500).json({ data: null, errors: [{ message: "Error Token " }], })

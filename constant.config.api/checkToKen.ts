@@ -18,7 +18,7 @@ async function checkToKen() {
         'check_token':true,
     };
     
-    console.log("param",param)
+    // console.log("param",param)
     await axios.post(
         GETALLUSERAPI,param,
         {
