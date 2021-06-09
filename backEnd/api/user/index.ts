@@ -29,7 +29,7 @@ const loginAPI = async ( req,
                 const body = { ...req.body }
                 // console.log("req.body1",req);
 				//BEGIN BZ00019
-				console.log("req.body1",req.body)
+				//console.log("req.body1",req.body)
 				if(req.body.check_token && req.body.check_token===true){
 					return await handlers['CheckTokenForloginUser']({ req, res, /* config, */ body });
 				//BEGIN BZ00025		

@@ -3,8 +3,11 @@
 *BZ00012            160521     Create validaton with Yup
 *BZ00016            030621     Create Login user to mongoDB
 *BZ00017            050621     Create validaton for Yup to login user 
+*BZ00027            090621     Install react-loading for project
+
 ************************************************************************
 */
+
 import React,{useEffect,useState,useMemo} from "react";
 import styles from './homeSignUp.module.scss';
 //BEGIN BZ00012
@@ -14,30 +17,29 @@ import * as Yup from "yup";
 import { InputLabel,Input,Grid,TextField, Divider, Typography, Button, Paper, MenuItem, Collapse, IconButton, Badge, ListItem, ListItemIcon, List, ListItemText } from '@material-ui/core';
 import { useSelector, useDispatch } from "react-redux";// BZ00016
 import {getUser} from '../../../../redux/actions/userActions';
+import Loading from '../../../../utils/loading';//BZ00027
+
+
+
 const homeSignUp = () =>{
     //BEGIN BZ00016
     const dispatch = useDispatch();
     const state = useSelector((state :any) => state.users);
+    const [loadDing,setLoading] = useState<Boolean>(false);
     const [userID , setUserID] = useState<String>('');
     const [userPasword , setuserPasword] =useState<String>('');
-    const computeExpenUserValue = (userIDBefor , userPaswordBefor)=>{
-        let result={
-            userID:'',
-            userPasword:''
-        }
-        if(userIDBefor!='' && userPaswordBefor!=''){     
-                   result.userID=userIDBefor;
-                   result.userPasword=userPaswordBefor;
-                   dispatch(getUser(result));
-                   return result;
-        }
-             
+    //BEGIN BZ00027
+    const halersLoading = () =>{
+        const div1 = document.getElementById('myLoading');
+        div1.removeAttribute('hidden');
+        // console.log("myLoading",div1);
     }
+    //END BZ00027
     //BEGIN BZ00016
     const formik = useFormik({
         initialValues: {
-        email: '',
-        password:''
+        email: 'quocnha@gmail.com',
+        password:'15242635'
         },
         validationSchema: Yup.object({
             email: Yup.string().email()
@@ -57,7 +59,7 @@ const homeSignUp = () =>{
                 setUserID(values.email);
                 setuserPasword(values.password);
                 result.userID=values.email;
-                result.userPasword=values.password;
+                result.userPasword=values.password;     
                 dispatch(getUser(result));
             }
             //END BZ00016
@@ -81,6 +83,8 @@ const homeSignUp = () =>{
                     </Grid>
                 </div>
                 <div className={styles.container}>
+                    <Loading ></Loading>  {/* BZ00027 */}  
+                    
                     {/* BEGIN BZ00012 */}
                     <form onSubmit={formik.handleSubmit}>
                         <Grid container spacing={3}>
@@ -113,7 +117,6 @@ const homeSignUp = () =>{
                                     className={styles.input}
                                     onChange={formik.handleChange}
                                     value={formik.values.password}
-
                                 />
 
                             </Grid>
@@ -123,6 +126,7 @@ const homeSignUp = () =>{
                             variant="contained"
                             color="secondary"
                             className={styles.button}
+                            onClick={halersLoading}//BZ00027
                         >
                             Submit
                         </Button>

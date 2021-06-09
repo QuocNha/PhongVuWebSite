@@ -9,7 +9,7 @@ import axios from 'axios';
 //const resign =  "https://order-demo-nextjs.herokuapp.com/api/resign";
 import {ADDUSERAPI} from '../constant.config.api/config/config';
 import getUserCookies from "./config/getUserCookies";
-
+import ShowToast from "../utils/showToast";
 
 
 const   addUserAPI = async(payload:any) => {
@@ -37,13 +37,15 @@ const   addUserAPI = async(payload:any) => {
         
     )
         .then(function (response) {
+            console.log(response);
+            ShowToast("Add user : "+response.data.data.email+" Sussucess.",'info');
             data = response;
         })
         .catch(function (err) {
+            ShowToast(err.response,'warning');
             data = err.response;
             // console.log("Data",data)
         });
-
     return data;
 }
 

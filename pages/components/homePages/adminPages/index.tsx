@@ -63,11 +63,18 @@ const HomePage = () =>{
             // ...this.getColumnSearchProps("status"),
         },
         {
+            title: "CreateAt",
+            dataIndex: "CreateAt",
+            key: "CreateAt",
+            // ...this.getColumnSearchProps("content"),
+        },
+        {
             title: "UserName",
             dataIndex: "userName",
             key: "userName",
             // ...this.getColumnSearchProps("content"),
         },
+        
         {
             title: "UserRole",
             dataIndex: "userRole",
@@ -75,9 +82,10 @@ const HomePage = () =>{
             // ...this.getColumnSearchProps("content"),
         },
         {
-            title: "IMG",
+            title: "Image",
             dataIndex: "img",
             key: "img",
+            width: 150,
             render: (text) => {
                 //console.log("Text"+text);
                   return (

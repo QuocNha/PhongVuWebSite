@@ -3,6 +3,8 @@
 *BZ00023            070621     Convert files to Base64 in React
 *BZ00024            080621     Create validation for userPages using Formik and Yub
 *BZ00025            080621     Create AddUser API
+*BZ00028            090621     Create loading when add User 
+
 ************************************************************************
 */
 import React, { useState,useMemo } from 'react';
@@ -16,6 +18,7 @@ import * as Yup from "yup";//BZ00025
 import { useSelector, useDispatch } from "react-redux";// BZ00025
 import addUserAPI from '../../../../../constant.config.api/addUserAPI';
 import {getUser,checkTokenUser,getAllUser,addUser,IUserForAdd} from '../../../../../redux/actions/userActions';//BZ00025
+import Loading from '../../../../../utils/loading';//BZ00028
 
 //END BZ00024 checkAddPages
 
@@ -23,12 +26,18 @@ const AddUserPages = (props) =>{
     const dispatch = useDispatch();//BZ00025
     // BEGIN BZ00023
     const [imageUrl,setImageUrl] = useState();
+    const [errorEmail,setErrorEmail]=useState<String>(null);
     const [loading,setLoading] = useState(false);
     const [userName,setUserName] =useState("");
     const [addUserSuccess,setAddUserSuccess] = useState(false);
     const HandelersNextAddUser = () =>{
         setAddUserSuccess(false);
     }
+     //BEGIN BZ00028 
+    const handelersLoading = () =>{
+        document.getElementById("myLoading").hidden = true;
+    }
+    //END BZ00028
     const getBase64 = (file, cb) =>{
         let reader = new FileReader();
         reader.readAsDataURL(file);
@@ -58,7 +67,19 @@ const AddUserPages = (props) =>{
           {loading ? <LoadingOutlined /> : <PlusOutlined />}
           <div style={{ marginTop: 8 }}>Upload</div>
         </div>
-      );
+    );
+      
+    function beforeUpload(file) {
+        const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+        if (!isJpgOrPng) {
+          message.error('You can only upload JPG/PNG file!');
+        }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+          message.error('Image must smaller than 2MB!');
+        }
+        return isJpgOrPng && isLt2M;
+      }
       //BEGIN BZ00024
       const formik = useFormik({
         initialValues: {
@@ -92,11 +113,16 @@ const AddUserPages = (props) =>{
             if(!result){
                 return ;
             }else{
+                document.getElementById("myLoading").hidden = true;
                const data = await  addUserAPI(result);
                //console.log("data11111111111111111111111111111"+data);
                if(data.status===200){
                 setAddUserSuccess(true);
                 setUserName(data.data.data.email);
+                document.getElementById("myLoading").hidden = false;
+               }else{
+                   setErrorEmail(data.data.errors);
+                console.log("data11111111111111111111111111111"+data.data.errors); 
                }
             }
             //END BZ00025
@@ -106,6 +132,7 @@ const AddUserPages = (props) =>{
     // END BZ00023  
    return <React.Fragment>
        <div className={styles.container}>
+       <Loading ></Loading>  {/* BZ00028 */}  
            <div className={styles.containerAddUserTile}>
                <h1>User List</h1>
             </div>
@@ -121,8 +148,8 @@ const AddUserPages = (props) =>{
                     {formik.touched.email && formik.errors.email ? (
                             <div className={styles.errorText}>{formik.errors.email}</div>
                             ) 
-                            // : 
-                            // (state.error && state.error!=null)? <div className={styles.errorText}>{state.error.errors}</div>
+                             : 
+                             (errorEmail && errorEmail!==null)? <div className={styles.errorText}>{errorEmail}</div>
                             :
                             null}    
                     <Input
@@ -206,13 +233,14 @@ const AddUserPages = (props) =>{
                            className="avatar-uploader"
                            showUploadList={false}
                         //    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                        //    beforeUpload={beforeUpload}
+                            beforeUpload={beforeUpload}
                             onChange={handlersChangeIMG}
                         >
     
                         {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                         </Upload>
-                        <Button type="primary" htmlType="submit">
+                        
+                        <Button type="primary" htmlType="submit" >
                          Submit
                         </Button>
                         {/* END BZ00023 */}
@@ -225,11 +253,10 @@ const AddUserPages = (props) =>{
             </React.Fragment>
              :(props.checkAddPages===true && addUserSuccess===true)?
              <React.Fragment>
-                 <div>
-                     Tạo user thành công +{userName}
-
+                 <div className={styles.addUserSuccessText}>
+                     <h3> <li   onClick={HandelersNextAddUser}>Create  user success : {userName}</li></h3>
                  </div>
-                 <div>
+                 <div className={styles.addUserSuccessButon}>
                  <Button 
                  onClick={HandelersNextAddUser}
                  type="primary" htmlType="submit">

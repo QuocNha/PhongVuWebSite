@@ -15,3 +15,8 @@ Step 3 :Connect DB Using Express and axios
 *BZ00023            070621     Convert files to Base64 in React
 *BZ00024            080621     Create validation for userPages using Formik and Yub
 *BZ00025            080621     Create AddUser API
+*BZ00026            090621     Install react-toastify for project
+npm add react-toastify
+*BZ00027            090621     Install react-loading for project
+npm i react-loading
+*BZ00028            090621     Create loading when add User

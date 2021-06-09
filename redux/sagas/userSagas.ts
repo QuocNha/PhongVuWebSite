@@ -15,21 +15,28 @@ import loginUser from "../../constant.config.api/loginUser";
 import checkToKen from "../../constant.config.api/checkToKen";
 import getAllUserAPI from "../../constant.config.api/getAllUserAPI";
 import addUserAPI from "../../constant.config.api/addUserAPI";//BZ00025
+import ShowToast from "../../utils/showToast";
+import loading from "../../utils/loading";
 
 import Router from 'next/router';
 function* loadDataSaga(name:any) {
-  try {
+  try { 
     const response = yield call(loginUser,name.payload);
     //BEGIN BZ00017  
     if(response!=null && response.status==400){
-      yield put(loadDataFailure(response.data)); 
+      ShowToast(response.data.errors,'warning');
+      yield put(loadDataFailure(response.data));
+      // console.log("response.data",response.data);
+      
     }else if(response!=null && response.status==200){
       yield put(loadDataSuccess(response.data));
+      ShowToast("Login user Sussucess.Please await for time loading.",'success');
       Router.push('/components/homePages/adminPages'); 
     }
     //END BZ00017
   } catch (err) {
-    yield put(loadDataFailure(err));
+    ShowToast(err,'err');
+  yield put(loadDataFailure(err));    
   }
 }
 //BZ00019
@@ -38,12 +45,15 @@ function* loadDataCheckToken(name:any) {
     const response = yield call(checkToKen);
     //BEGIN BZ00017  
     if(response!=null && response.status==400){
+      ShowToast(response.data.errors,'warning');
        yield put(loadDataFailure(response.data)); 
     }else if(response!=null && response.status==200){
+       ShowToast("Login with user-token for Sussucess.Please await for time loading.",'success');
        yield put(loadDataSuccess(response.data));
     }
     //END BZ00017
   } catch (err) {
+    ShowToast(err,'err');
      yield put(loadDataFailure(err));
   }
 }
@@ -51,10 +61,14 @@ function* loadDataCheckToken(name:any) {
 //BEGIN BZ00020
 function* loadDataGetAllUser(payload:any) {
   try {
+    ShowToast('Please await load user List','info');
+    loading(true);
     const response = yield call(getAllUserAPI,payload.payload.page,payload.payload.limit);//BZ00021
     if(response!=null && response.status==400){
+      ShowToast(response.data.errors,'warning');
        yield put(loadDataFailure(response.data)); 
     }else if(response!=null && response.status==200){
+       ShowToast("Loading DataUser Sussucess.Please await for time.",'success');
        yield put(loadDataGetAllUseSuccess(response.data.data,response.data.dataLenght));
     }
     

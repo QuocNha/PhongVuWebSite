@@ -11,7 +11,7 @@ const loginUser  = async ( {res,req,body: { email, password }}) => {
     if (!user) {
         return res.status(400).json({
           data: null,
-          errors: 'Không tìm thấy địa chỉ mail ' + email ,
+          errors: 'Cannot found address mail ' + email ,
         });
     }
 
@@ -20,7 +20,7 @@ const loginUser  = async ( {res,req,body: { email, password }}) => {
       if (!isValidPassword) {
         return res.status(400).json({
           data: null,
-          errors: 'Password không hợp lệ.',
+          errors: 'Password errors.',
         });
       }
     //   const jwt = user.generateJWT()
