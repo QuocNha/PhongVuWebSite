@@ -36,7 +36,6 @@ export type PhongVuApiHandler<
 export type PhongVuHandler<T = any, Body = null> = (options: {
   req: NextApiRequest
   res: NextApiResponse<PhongVuApiResponse<T>>
-  // config: CheckeeConfig
   body: Body
 }) => void | Promise<void>
 
@@ -63,7 +62,6 @@ export default function createApiHandler<
     operations,
     options,
   }: {
-    // config?: CheckeeConfig
     operations?: Partial<H>
     options?: Options extends {} ? Partial<Options> : never
   } = {}): NextApiHandler {

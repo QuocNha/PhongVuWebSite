@@ -22,19 +22,19 @@ const  ShowToast = (message,notification) =>{
     if(notification==='info'){
         return (
             <div className="GeeksforGeeks">
-             {toast.info(message, {autoClose:30})}
+             {toast.info(message, {autoClose:10000})}
             </div>
         );
     }else if(notification==='warning'){
         return (
             <div className="GeeksforGeeks">
-             {toast.warning(message, {autoClose:30})}
+             {toast.warning(message, {autoClose:10000})}
             </div>
         );
     }else if(notification==='success'){
         return (
             <div className="GeeksforGeeks">
-             {toast.success(message, {autoClose:30})}
+             {toast.success(message, {autoClose:10000})}
             </div>
         );
     }

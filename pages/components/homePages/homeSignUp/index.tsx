@@ -25,16 +25,36 @@ const homeSignUp = () =>{
     //BEGIN BZ00016
     const dispatch = useDispatch();
     const state = useSelector((state :any) => state.users);
-    const [loadDing,setLoading] = useState<Boolean>(false);
+    const [errorUser,setErrorUser] =useState(state.error?state.error.error:""); 
+    const [isLoading,setIsLoading] = useState<Boolean>(true);//BZ00027
     const [userID , setUserID] = useState<String>('');
     const [userPasword , setuserPasword] =useState<String>('');
-    //BEGIN BZ00027
-    const halersLoading = () =>{
-        const div1 = document.getElementById('myLoading');
-        div1.removeAttribute('hidden');
-        // console.log("myLoading",div1);
-    }
+    const [user,setUser] =useState ({
+        userID:'',
+        userPasword:''
+    });
     //END BZ00027
+    //BEGIN BZ00027
+      const computeExpensiveUser = page => {
+          if(page!==null && page.userID!=="" && page.userPasword!==''){
+            setIsLoading(false);
+            dispatch(getUser(page));
+            return page;
+          }
+      };
+      const computeExpensiveErrorUser = errorUser => {
+        if( errorUser!==""){
+          setIsLoading(true);
+          return errorUser;
+        }   
+    };
+    const memoUserlogin = useMemo(() => computeExpensiveUser(user), [user]);
+    const memoErrorUser = useMemo(() => computeExpensiveErrorUser(state), [state]);
+    //END BZ00027
+    
+    // const memoIsLoanding = useMemo(() => computeExpensiveIsLoanding ( ), [user]);
+
+
     //BEGIN BZ00016
     const formik = useFormik({
         initialValues: {
@@ -59,8 +79,9 @@ const homeSignUp = () =>{
                 setUserID(values.email);
                 setuserPasword(values.password);
                 result.userID=values.email;
-                result.userPasword=values.password;     
-                dispatch(getUser(result));
+                result.userPasword=values.password;
+                setUser(result);
+               
             }
             //END BZ00016
         },
@@ -83,7 +104,7 @@ const homeSignUp = () =>{
                     </Grid>
                 </div>
                 <div className={styles.container}>
-                    <Loading ></Loading>  {/* BZ00027 */}  
+                    <Loading isLoading={isLoading}></Loading>  {/* BZ00027 */}  
                     
                     {/* BEGIN BZ00012 */}
                     <form onSubmit={formik.handleSubmit}>
@@ -126,7 +147,6 @@ const homeSignUp = () =>{
                             variant="contained"
                             color="secondary"
                             className={styles.button}
-                            onClick={halersLoading}//BZ00027
                         >
                             Submit
                         </Button>

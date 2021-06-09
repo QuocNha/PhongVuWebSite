@@ -5,6 +5,7 @@
 *BZ00020            060621     Get All User
 *BZ00021            060621     Paganation for List User
 *BZ00022            070621     Create addUserPages
+*BZ00028            070621     Loading For AdminPages
 ************************************************************************
 */
 import React,{useEffect, useState,useMemo} from'react';
@@ -15,7 +16,10 @@ import {getUser,checkTokenUser,getAllUser} from '../../../../redux/actions/userA
 import styles from './adminPases.module.scss';
 import { Menu, Table ,Divider } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
-import AddUserPages from "./addUserPages"
+import AddUserPages from "./addUserPages";
+import Loading from '../../../../utils/loading';//BZ00028
+
+
 const { SubMenu } = Menu;
 const HomePage = () =>{
     const user = useSelector((state :any) => state.users);
@@ -33,9 +37,10 @@ const HomePage = () =>{
     
     //END BZ00021
     const dispatch = useDispatch();
+    const [isLoading,setIsLoading] = useState<Boolean>(true);//BZ00028
     const handlersClickPageChange= async (e) =>{
+        setIsLoading(false);//BZ00028
         dispatch(getAllUser(e,limit));
-        
     }
     const handlersClickPageAddUserChange= async (e) =>{
         setPageUser("addUserPages");
@@ -46,14 +51,24 @@ const HomePage = () =>{
 
     }
     
-    //BZ00021
+    //BEGIN BZ00021
     const computeExpensivePage = page => {
         return page;
       };
-   //BZ00021 
+    //END BZ00021
+    //BEGIN BZ00028
+    const computeExpensiveUsersGetALL = usersGetALL => {
+        if(usersGetALL!=""){
+            setIsLoading(true);
+            return usersGetALL;
+        }
+      };
+    //END BZ00028
         const memoPage = useMemo(() => computeExpensivePage(page), [page]);
         const memoPageChange = useMemo(() => computeExpensivePage(pageUser), [pageUser]);
+        const memoUsersGetALL = useMemo(() => computeExpensiveUsersGetALL(usersGetALL), [usersGetALL]);//BZ00028
 
+        usersGetALL
     // console.log("user",user)
     const columns=[
         {
@@ -63,9 +78,9 @@ const HomePage = () =>{
             // ...this.getColumnSearchProps("status"),
         },
         {
-            title: "CreateAt",
-            dataIndex: "CreateAt",
-            key: "CreateAt",
+            title: "createAt",
+            dataIndex: "createAt",
+            key: "createAt",
             // ...this.getColumnSearchProps("content"),
         },
         {
@@ -97,7 +112,8 @@ const HomePage = () =>{
     useEffect(() => {
         //BEGIN  BZ00020 
         // setIsLoadingViewOrderHistories(true);
-            dispatch(getAllUser(page,limit));
+        setIsLoading(false);
+        dispatch(getAllUser(page,limit));
             // setIsLoadingViewOrderHistories(false);
         //END  BZ00020
         if (!(user.users)) {
@@ -115,6 +131,7 @@ const HomePage = () =>{
       
  return <React.Fragment>
      <div id={styles.containerHeader}>
+     <Loading isLoading={isLoading}></Loading>  {/* BZ00028 */}  
      <HeaderPage key="HeaderPage" {...user.users}></HeaderPage>
      </div>
      <div id={styles.containerBody}>

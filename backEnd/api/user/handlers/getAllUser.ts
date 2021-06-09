@@ -1,11 +1,13 @@
 /*
 *BZ00021           060621     Paganation for List User
+*BZ00029           060621     Install monent for convert Date
 
 ************************************************************************
 */
 import dbConnect from '../../../../utils/dbConnect';
 import jwt from 'jsonwebtoken';
 import User from "../../../model/user";
+import moment from 'moment';//BZ00029
 
 const getAllUser  = async ( {res,req,body: { user_cookies , check_token }}) => {
     let result={data:[]};
@@ -29,7 +31,7 @@ const getAllUser  = async ( {res,req,body: { user_cookies , check_token }}) => {
                     number:i+1,
                     userRole:user[i].userRole,
                     img:user[i].img,
-                    createdAt:user[i].createdAt
+                    createAt: moment(user[i].createAt).format('DD-MM-YYYY'),//BZ00029
                 }
             )
          }

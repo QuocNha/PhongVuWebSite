@@ -7,13 +7,14 @@ import ReactLoading from 'react-loading';
 import styles from './Loading.module.scss';
 
 const Loading = ( props) => {
+  console.log("props.isLoading",props);
     const loadingStyle = {
         zIndex: "999",
         position: "fixed",
         backgroundColor: "rgba(0, 0, 0, 0.3)",
       };
       return (
-           <div id="myLoading" hidden={true} className={styles.loadingStyle} >
+           <div id="myLoading" hidden={props.isLoading} className={styles.loadingStyle} >
               <ReactLoading
                 type="spin"
                 color="#33cabb"

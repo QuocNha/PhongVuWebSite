@@ -19,4 +19,6 @@ Step 3 :Connect DB Using Express and axios
 npm add react-toastify
 *BZ00027            090621     Install react-loading for project
 npm i react-loading
-*BZ00028            090621     Create loading when add User
+*BZ00028            070621     Loading For AdminPages
+*BZ00029           060621     Install monent for convert Date
+npm i moment
