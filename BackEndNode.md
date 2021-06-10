@@ -7,6 +7,8 @@ https://www.udemy.com/course/mern-stack-front-to-back/
 https://dashboard.heroku.com/apps/order-demo-nextjs/deploy/github
 https://www.youtube.com/watch?v=srPXMt1Q0nY&list=PL55RiY5tL51q4D-B63KBnygU6opNPFk_q&index=10
 https://www.youtube.com/watch?v=AbtmtAFdbWo
+    //"mongoURI":"mongodb+srv://nhalovean:15242635@cluster0.oioig.mongodb.net/test?retryWrites=true&w=majority"
+
  Step 1: 
 install mongoose:
 npm install --save mongoose bcryptjs config expressnodemo concurrently express-validator gravatar jsonwebtoken nodemon morgan

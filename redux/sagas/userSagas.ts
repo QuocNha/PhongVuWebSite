@@ -31,7 +31,7 @@ function* loadDataSaga(name:any) {
     }else if(response!=null && response.status==200){
       yield put(loadDataSuccess(response.data));
       ShowToast("Login user Sussucess.Please await for time loading.",'success');
-      Router.push('/components/homePages/adminPages'); 
+      Router.push('/adminPages'); 
     }
     //END BZ00017
   } catch (err) {

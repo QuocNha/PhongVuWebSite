@@ -13,7 +13,7 @@ export default function Home() {
       <Head key="Head">
         <title>PhongVu</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" /> 
-        <link rel="icon" href="/images.jpg" />
+        <link rel="icon" href="/P.png" />
       </Head>
       <div className="root">
         {/* <HomePage key="HomePage"></HomePage> */}

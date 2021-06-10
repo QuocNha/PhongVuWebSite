@@ -7,7 +7,7 @@ import ReactLoading from 'react-loading';
 import styles from './Loading.module.scss';
 
 const Loading = ( props) => {
-  console.log("props.isLoading",props);
+  // console.log("props.isLoading",props);
     const loadingStyle = {
         zIndex: "999",
         position: "fixed",

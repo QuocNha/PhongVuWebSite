@@ -6,9 +6,11 @@
 *BZ00021            060621     Paganation for List User
 *BZ00022            070621     Create addUserPages
 *BZ00028            070621     Loading For AdminPages
+*BZ00030            100621     Search for list User
+
 ************************************************************************
 */
-import React,{useEffect, useState,useMemo} from'react';
+import React,{useEffect, useState,useMemo,useCallback} from'react';
 import HeaderPage  from '../headerPage';
 import { useSelector, useDispatch } from "react-redux";// BZ00016
 import Router from 'next/router';
@@ -18,6 +20,8 @@ import { Menu, Table ,Divider } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import AddUserPages from "./addUserPages";
 import Loading from '../../../../utils/loading';//BZ00028
+// import SearchAdmin from '../bodyPage/searchTime';
+import SearchAdmin from '../bodyPage/searchText';
 
 
 const { SubMenu } = Menu;
@@ -25,7 +29,7 @@ const HomePage = () =>{
     const user = useSelector((state :any) => state.users);
     const usersGetALL = useSelector((state :any) => state.usersGetALL);
     const [checkAddPages,setCheckAddPages] = useState(true);
-    
+    const [lengthListUser, setLengthListuser]=useState();
     const [isLoadingViewOrderHistories,setIsLoadingViewOrderHistories] = useState(false);
     const [listUser,setListUser] = useState([]);
     //BEGIN BZ00021
@@ -38,6 +42,12 @@ const HomePage = () =>{
     //END BZ00021
     const dispatch = useDispatch();
     const [isLoading,setIsLoading] = useState<Boolean>(true);//BZ00028
+
+    const [userDataSearch,setUserDataSearch] = useState([]);
+    const [checkResetSearch,setCheckResetSearch] = useState(false);
+    const [lengthUserDataSearch,setLengthUserDataSearch] = useState(0);
+
+    
     const handlersClickPageChange= async (e) =>{
         setIsLoading(false);//BZ00028
         dispatch(getAllUser(e,limit));
@@ -60,6 +70,7 @@ const HomePage = () =>{
     const computeExpensiveUsersGetALL = usersGetALL => {
         if(usersGetALL!=""){
             setIsLoading(true);
+            setLengthListuser(usersGetALL && usersGetALL.listUser ?usersGetALL.listUser.userAllDataLength:0);
             return usersGetALL;
         }
       };
@@ -81,6 +92,12 @@ const HomePage = () =>{
             title: "createAt",
             dataIndex: "createAt",
             key: "createAt",
+            // ...this.getColumnSearchProps("content"),
+        },
+        {
+            title: "userType",
+            dataIndex: "userType",
+            key: "userType",
             // ...this.getColumnSearchProps("content"),
         },
         {
@@ -108,7 +125,18 @@ const HomePage = () =>{
                      )
                  }
         }
-    ]
+    ];
+    //BEGIN BZ00030
+    const CallBackIsloading = useCallback((isloading) => {
+        setIsLoading(isloading)
+      }, [isLoading]);
+    
+    const CallBackIsUserDataSearch = useCallback((data,checkReset,lengthUserDataSearch) => {
+        setUserDataSearch(data);
+        setCheckResetSearch(checkReset);
+        setLengthUserDataSearch(lengthUserDataSearch);
+    }, [userDataSearch,checkResetSearch,lengthUserDataSearch]);
+    //END BZ00030
     useEffect(() => {
         //BEGIN  BZ00020 
         // setIsLoadingViewOrderHistories(true);
@@ -168,22 +196,43 @@ const HomePage = () =>{
             <div className={styles.containerBodyRight}>
             <div className={styles.containerBodyRightTile}>
                <h1>User List</h1>
+               <SearchAdmin 
+               lengthListUser={lengthListUser}
+               CallBackIsloading={CallBackIsloading}
+               CallBackIsUserDataSearch={CallBackIsUserDataSearch}
+               ></SearchAdmin>{/* BZ00030 */}
             </div>
             <div className={styles.containerBodyRightDataUser}>
             {/* BEGIN BZ00020 */}
+            {checkResetSearch===true?
+            <Table
+            //  loading={isLoadingViewOrderHistories}
+            bordered
+            columns={columns}
+             dataSource={
+                checkResetSearch===true?userDataSearch:
+                usersGetALL && usersGetALL.listUser ?usersGetALL.listUser.data:
+                 []}
+             pagination={{
+                defaultCurrent:1,
+                total:  checkResetSearch===true?lengthUserDataSearch:lengthListUser,
+               
+            }}                
+            />
+            :
             <Table
                 //  loading={isLoadingViewOrderHistories}
                 bordered
                 columns={columns}
-                 dataSource={
-                      usersGetALL && usersGetALL.listUser ?usersGetALL.listUser.data:
-                     []}
+                dataSource={usersGetALL && usersGetALL.listUser ?usersGetALL.listUser.data:[]}
                  pagination={{
                     defaultCurrent:1,
-                    total: usersGetALL && usersGetALL.listUser ?usersGetALL.listUser.userAllDataLength:0,
+                    total:  lengthListUser,
                     onChange:handlersClickPageChange
-                }}                
+                }}
                 />
+            }                        
+                
             {/* BEGIN BZ00020 */}
             </div>
         </div>

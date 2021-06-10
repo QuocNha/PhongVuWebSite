@@ -32,6 +32,7 @@ const getAllUser  = async ( {res,req,body: { user_cookies , check_token }}) => {
                     userRole:user[i].userRole,
                     img:user[i].img,
                     createAt: moment(user[i].createAt).format('DD-MM-YYYY'),//BZ00029
+                    userType:user[i].userType
                 }
             )
          }
