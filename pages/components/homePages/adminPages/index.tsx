@@ -111,7 +111,7 @@ const HomePage = () =>{
         e.preventDefault();
         setIsLoading(false);
         const data = await exportUserForExcelAPI(true);
-        setIsLoading(false);
+        setIsLoading(true);
     }
     //* BEGIN BZ00033
     

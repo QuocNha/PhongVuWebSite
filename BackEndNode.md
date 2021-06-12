@@ -32,3 +32,4 @@ token+ secert :data
 
 When user login  has Token initialized.
 *BZ00032            130621     Delete for user
+*BZ00033             130621     Export excel  for user
