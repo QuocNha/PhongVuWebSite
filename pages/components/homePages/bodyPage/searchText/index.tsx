@@ -183,7 +183,7 @@ return <React.Fragment>
                 // className="btn btn-warning w-100 btnTimKiem"
                  onClick={hadlerSearch}
             >
-                Search<i><SearchOutlined /></i >
+                Search<i><SearchOutlined key='SearchOutlined'/></i >
               </button>
         </div>
         <div className={styles.containerSearchtextButton}>

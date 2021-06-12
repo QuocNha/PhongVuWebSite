@@ -8,6 +8,8 @@
 *BZ00028            070621     Loading For AdminPages
 *BZ00030            100621     Search for list User
 *BZ00031            130621     Delete,Edit for user
+*BZ00033          130621     Export excel  for user
+
 
 ************************************************************************
 */
@@ -24,6 +26,7 @@ import Loading from '../../../../utils/loading';//BZ00028
 // import SearchAdmin from '../bodyPage/searchTime';
 import SearchAdmin from '../bodyPage/searchText';
 import deleteUserAPI from '../../../../constant.config.api/deleteUserAPI';
+import exportUserForExcelAPI from '../../../../constant.config.api/exportUserForExcelAPI';
 
 
 const { SubMenu } = Menu;
@@ -38,6 +41,7 @@ const HomePage = () =>{
     const [dataTableIndex,setDataTableIndex] = useState(0);
     const [typeAction,setTypeACtion] = useState('');
     const [email,setEmail] = useState('');
+    const [userEdit,setUserEdit] = useState({});
     //END BZ00031
     
     
@@ -73,7 +77,8 @@ const HomePage = () =>{
     //BEGIN BZ00031
     const handerClickAction= async (index,type,data) =>{
         if(index!=null){
-            setEmail(data);
+            setEmail(data.userName);
+            setUserEdit(data);
             setYesNoAction(true);
             setDataTableIndex(index);
             setTypeACtion(type);    
@@ -90,6 +95,7 @@ const HomePage = () =>{
             console.log("email",email);
             setYesNoAction(false);
             let data=await deleteUserAPI(email);
+            setCheckResetSearch(false);
             dispatch(getAllUser(page,limit));
         }else if(checkAction===true && type=="EDIT"){
         setYesNoAction(false);
@@ -100,7 +106,14 @@ const HomePage = () =>{
 
     }
     //END BZ00031
-    
+    //* BEGIN BZ00033 
+    const handelerExportExcel = async(e) =>{
+        e.preventDefault();
+        setIsLoading(false);
+        const data = await exportUserForExcelAPI(true);
+        setIsLoading(false);
+    }
+    //* BEGIN BZ00033
     
     //BEGIN BZ00021
     const computeExpensivePage = page => {
@@ -182,14 +195,14 @@ const HomePage = () =>{
                     <div className={styles.dropAction}>
                     <div>
                     <Tooltip placement="top" title="Delete">
-                        <Button type="primary" danger onClick={() => handerClickAction(index,'DELETE',row.userName)}>
+                        <Button type="primary" danger onClick={() => handerClickAction(index,'DELETE',row)}>
                             Delete
                         </Button> 
                     </Tooltip>
                     </div>
                     <div>
                     <Tooltip placement="top" title="Edit">
-                        <Button type="primary" onClick={() => handerClickAction(index,'EDIT',row.userName)}>
+                        <Button type="primary" onClick={() => handerClickAction(index,'EDIT',row)}>
                             Edit
                         </Button> 
                       </Tooltip>
@@ -254,10 +267,10 @@ const HomePage = () =>{
         defaultOpenKeys={['sub1']}
         mode="inline"
       >
-           <SubMenu key="sub1" icon={<MailOutlined />} title="User">
+           <SubMenu key="sub1" icon={<MailOutlined key='MailOutlined'/>} title="User">
             <Menu.ItemGroup key="g1">
-            <Menu.Item key="1" icon={<MailOutlined />} onClick={handlersClickPageListUserPages}>List User</Menu.Item>
-              <Menu.Item key="2" icon={<MailOutlined />} onClick={handlersClickPageAddUserChange}>Add User</Menu.Item>
+            <Menu.Item key="1" icon={<MailOutlined key='MailOutlined1'/>} onClick={handlersClickPageListUserPages}>List User</Menu.Item>
+              <Menu.Item key="2" icon={<MailOutlined key='MailOutlined2'/>} onClick={handlersClickPageAddUserChange}>Add User</Menu.Item>
               {/* <Menu.Item key="3" icon={<MailOutlined />}>Delete User</Menu.Item>
               <Menu.Item key="4"icon={<MailOutlined />}>Update User</Menu.Item> */}
             </Menu.ItemGroup> 
@@ -278,6 +291,11 @@ const HomePage = () =>{
             <div className={styles.containerBodyRight}>
             <div className={styles.containerBodyRightTile}>
                <h1>User List</h1>
+               {/* BEGIN BZ00033 */}
+               <div>
+                <Button type="primary" onClick={handelerExportExcel}>Export ecxel</Button>
+               </div>
+               {/* END BZ00033 */}
                <SearchAdmin 
                lengthListUser={lengthListUser}
                CallBackIsloading={CallBackIsloading}

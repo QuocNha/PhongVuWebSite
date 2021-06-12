@@ -33,6 +33,7 @@
     "next": "^10.2.3",
     "next-images": "^1.7.0",
     "next-redux-wrapper": "^6.0.2",
+    "node-excel-export": "^1.4.4",
     "nodemon": "^2.0.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",

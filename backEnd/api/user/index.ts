@@ -4,6 +4,8 @@
 *BZ00021           060621     Paganation for List User
 *BZ00025           080621     Create AddUser API
 *BZ00031           130621     Delete,Edit for user
+*BZ00033           130621     Export excel  for user
+
 
 
 
@@ -20,9 +22,11 @@ import CheckTokenForloginUser from './handlers/CheckTokenForloginUser';
 import getAllUser from './handlers/getAllUser';
 import addUser from './handlers/addUser';
 import deleteUser from './handlers/deleteUser';
+import exportUserForExcel from './handlers/exportUserForExcel';
+
 
 export type CustomerHandlers = {
-    loginUser,CheckTokenForloginUser,getAllUser,addUser,deleteUser
+    loginUser,CheckTokenForloginUser,getAllUser,addUser,deleteUser,exportUserForExcel
 }
 const loginAPI = async ( req,
     res,
@@ -36,11 +40,15 @@ const loginAPI = async ( req,
 				if(req.body.check_token && req.body.check_token===true){
 					return await handlers['CheckTokenForloginUser']({ req, res, /* config, */ body });
 				//BEGIN BZ00025		
-				}else if(req.body.check_Add_User === true){
+				}else if(req.body.check_Add_User && req.body.check_Add_User=== true){
 					
 					return await handlers['addUser']({ req, res, /* config, */ body })	
+                //BEGIN BZ00033
+				}else if(req.body.checkExportUserForExcel && req.body.checkExportUserForExcel===true){
+					return await handlers['exportUserForExcel']({ req, res, /* config, */ body })	
 
 				}
+				//END BZ00033
 				//END BZ00025
 				else {
 					return await handlers['loginUser']({ req, res, /* config, */ body })
@@ -72,6 +80,6 @@ const loginAPI = async ( req,
 		}
 	}
 
-export const handlers = { loginUser,CheckTokenForloginUser,getAllUser,addUser,deleteUser/* , addEmployee */ }
+export const handlers = { loginUser,CheckTokenForloginUser,getAllUser,addUser,deleteUser,exportUserForExcel/* , addEmployee */ }
 
 export default createApiHandler(loginAPI, handlers, {})
