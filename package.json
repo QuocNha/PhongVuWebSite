@@ -20,6 +20,7 @@
     "bcryptjs": "^2.4.3",
     "concurrently": "^6.2.0",
     "config": "^3.3.6",
+    "excel-export-next": "^1.0.3",
     "express": "^4.17.1",
     "express-validator": "^6.11.1",
     "formik": "^2.2.6",
