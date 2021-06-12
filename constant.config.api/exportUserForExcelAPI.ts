@@ -33,6 +33,8 @@ async function exportUserForExcelAPI(checkExportUserForExcel:any) {
         responseType: 'blob'
     })    
         .then(function (response) {
+            console.log("response.data",response.data);
+            console.log("response.data",typeof response.data);
             const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;

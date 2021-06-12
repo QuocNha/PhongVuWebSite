@@ -144,9 +144,9 @@ const exportUserForExcel = async({res,req,body: { user_cookies , check_token }})
         ]
       );
       // You can then return this straightr
-      res.write(report);
-      res.end();
-      return ;
+      
+    
+      return  res.send(report);
  
 }
 export default exportUserForExcel;
