@@ -7,7 +7,7 @@
 *BZ00022            070621     Create addUserPages
 *BZ00028            070621     Loading For AdminPages
 *BZ00030            100621     Search for list User
-*BZ00031            130621     Delete for user
+*BZ00031            130621     Delete,Edit for user
 
 ************************************************************************
 */
@@ -17,12 +17,13 @@ import { useSelector, useDispatch } from "react-redux";// BZ00016
 import Router from 'next/router';
 import {getUser,checkTokenUser,getAllUser} from '../../../../redux/actions/userActions';
 import styles from './adminPases.module.scss';
-import { Menu, Table ,Divider,Tooltip } from 'antd';
+import { Menu, Table ,Divider,Tooltip,Button,Tag } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import AddUserPages from "./addUserPages";
 import Loading from '../../../../utils/loading';//BZ00028
 // import SearchAdmin from '../bodyPage/searchTime';
 import SearchAdmin from '../bodyPage/searchText';
+import deleteUserAPI from '../../../../constant.config.api/deleteUserAPI';
 
 
 const { SubMenu } = Menu;
@@ -31,8 +32,16 @@ const HomePage = () =>{
     const usersGetALL = useSelector((state :any) => state.usersGetALL);
     const [checkAddPages,setCheckAddPages] = useState(true);
     const [lengthListUser, setLengthListuser]=useState();
-    const [isLoadingViewOrderHistories,setIsLoadingViewOrderHistories] = useState(false);
     const [listUser,setListUser] = useState([]);
+    //BEGIN BZ00031 
+    const [yesNoAction,setYesNoAction] = useState(false);
+    const [dataTableIndex,setDataTableIndex] = useState(0);
+    const [typeAction,setTypeACtion] = useState('');
+    const [email,setEmail] = useState('');
+    //END BZ00031
+    
+    
+    
     //BEGIN BZ00021
     const [page,setPage] = useState<number>(1);
     const [limit,setLimit] = useState<number>(10);
@@ -61,6 +70,37 @@ const HomePage = () =>{
         setPageUser("listUserPages");
 
     }
+    //BEGIN BZ00031
+    const handerClickAction= async (index,type,data) =>{
+        if(index!=null){
+            setEmail(data);
+            setYesNoAction(true);
+            setDataTableIndex(index);
+            setTypeACtion(type);    
+        }
+        // e.preventDefault();
+        // console.log("handerClickAction",e)
+        
+    }
+    const handerClickActionYesNo= async (checkAction,type) =>{
+        // e.preventDefault();
+        // console.log("handerClickAction",e.target.value)
+        setIsLoading(false);
+        if(checkAction===true && type=="DELETE"){
+            console.log("email",email);
+            setYesNoAction(false);
+            let data=await deleteUserAPI(email);
+            dispatch(getAllUser(page,limit));
+        }else if(checkAction===true && type=="EDIT"){
+        setYesNoAction(false);
+        }else{
+            setYesNoAction(false);
+        }
+        setIsLoading(true);
+
+    }
+    //END BZ00031
+    
     
     //BEGIN BZ00021
     const computeExpensivePage = page => {
@@ -126,26 +166,47 @@ const HomePage = () =>{
                      )
                  }
         },
+        //BEGIN BZ00031
         {
             title: "Action",
             key: "action",
-            render: () => {
-                //console.log("Text"+text);
+            dataIndex:"action",
+            render: (value, row, index) => {
+                console.log("Text"+value);
+                console.log("Data"+row);
+                console.log("Data"+index);
                   return (
-                        <React.Fragment>
-                        <Tooltip placement="top" title="Duyệt">
-                        <i
-                        className="fa fa-check-circle"
-                        data-toggle="modal"
-                        // data-target={"#approval-order-" + index}
-                        style={{ cursor: "pointer", marginRight: "10px" }}
-                        // onClick={this.setValueModalUpdate}
-                        ></i>
+                    <React.Fragment>
+                    {yesNoAction===false || (yesNoAction===true && dataTableIndex!==index) ?
+                    (
+                    <div className={styles.dropAction}>
+                    <div>
+                    <Tooltip placement="top" title="Delete">
+                        <Button type="primary" danger onClick={() => handerClickAction(index,'DELETE',row.userName)}>
+                            Delete
+                        </Button> 
                     </Tooltip>
-                        </React.Fragment>
+                    </div>
+                    <div>
+                    <Tooltip placement="top" title="Edit">
+                        <Button type="primary" onClick={() => handerClickAction(index,'EDIT',row.userName)}>
+                            Edit
+                        </Button> 
+                      </Tooltip>
+                    </div>      
+                    </div>
+                    )
+                    :(yesNoAction===true && dataTableIndex===index)?
+                    <React.Fragment>
+                    <Tag color="blue" onClick={() => handerClickActionYesNo(true,typeAction)}>Yes</Tag>
+                    <Tag color="red" onClick={() => handerClickActionYesNo(false,typeAction)}>No</Tag>
+                    </React.Fragment>
+                    : ""}    
+                    </React.Fragment>  
                      )
                  }
         }
+        //END BZ00031
     ];
     //BEGIN BZ00030
     const CallBackIsloading = useCallback((isloading) => {

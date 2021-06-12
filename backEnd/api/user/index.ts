@@ -3,6 +3,8 @@
 *BZ00019           060621     Using Token login for next reset
 *BZ00021           060621     Paganation for List User
 *BZ00025           080621     Create AddUser API
+*BZ00031           130621     Delete,Edit for user
+
 
 
 ************************************************************************
@@ -17,9 +19,10 @@ import loginUser from './handlers/loginUser';
 import CheckTokenForloginUser from './handlers/CheckTokenForloginUser';
 import getAllUser from './handlers/getAllUser';
 import addUser from './handlers/addUser';
+import deleteUser from './handlers/deleteUser';
 
 export type CustomerHandlers = {
-    loginUser,CheckTokenForloginUser,getAllUser,addUser
+    loginUser,CheckTokenForloginUser,getAllUser,addUser,deleteUser
 }
 const loginAPI = async ( req,
     res,
@@ -56,12 +59,19 @@ const loginAPI = async ( req,
 				return await handlers['getAllUser']({ req, res, /* config, */ body });
 			}
 			//END BZ00021
+			//BEGIN
+			if (req.method === 'DELETE') {
+				const body = { ...req.body }
+                console.log("req.body deleteUser",req.body);
+				return await handlers['deleteUser']({ req, res, /* config, */ body });
+			}
+			//END
 		} catch (error) {
 			console.error(error)
 			res.status(500).json({ data: null, errors: [{ message: error.message }], })
 		}
 	}
 
-export const handlers = { loginUser,CheckTokenForloginUser,getAllUser,addUser/* , addEmployee */ }
+export const handlers = { loginUser,CheckTokenForloginUser,getAllUser,addUser,deleteUser/* , addEmployee */ }
 
 export default createApiHandler(loginAPI, handlers, {})

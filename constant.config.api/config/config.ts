@@ -5,6 +5,7 @@
 *BZ00019            060621     Using Token login for next reset
 *BZ00020            060621     Get All User
 *BZ00025            080621     Create AddUser API
+*BZ00031            080621     Create AddUser API
 
 ************************************************************************
 */
@@ -16,11 +17,13 @@ const LOGINUSER = SERVERAPI+ "api/login";//BZ00017
 const CHECK_TOKENAPI = SERVERAPI+ "api/checkTokenAPI";//BZ00019
 const GETALLUSERAPI = SERVERAPI+ "api/getAllUserAPI";//BZ00020
 const ADDUSERAPI = SERVERAPI+ "api/addUserAPI";//BZ00025
+const DELETEUSERAPI = SERVERAPI+ "api/deleteUserAPI";//BZ00025
+
 
 
 export {
     LOGINUSER,
     CHECK_TOKENAPI,
     GETALLUSERAPI,
-    ADDUSERAPI
+    ADDUSERAPI,DELETEUSERAPI
 }
