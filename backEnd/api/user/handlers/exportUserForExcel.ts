@@ -145,9 +145,10 @@ const exportUserForExcel = async({res,req,body: { user_cookies , check_token }})
       );
       // You can then return this straightr
       
-    
-      return  res.send(report);
- 
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');  
+      res.send(report);  
+      res.end();
+  
 }
 export default exportUserForExcel;
  
