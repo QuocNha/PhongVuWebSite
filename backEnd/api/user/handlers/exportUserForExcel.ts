@@ -44,8 +44,8 @@ const styles = {
  
 //Array of objects representing heading rows (very top)
 const heading = [
-  [{value: 'a1', style: styles.headerDark}, {value: 'b1', style: styles.headerDark}, {value: 'c1', style: styles.headerDark}],
-  ['a2', 'b2', 'c2'] // <-- It can be only values
+  // [{value: 'a1', style: styles.headerDark}, {value: 'b1', style: styles.headerDark}, {value: 'c1', style: styles.headerDark}],
+  // ['a2', 'b2', 'c2'] // <-- It can be only values
 ];
  
 //Here you specify the export structure
@@ -143,8 +143,10 @@ const exportUserForExcel = async({res,req,body: { user_cookies , check_token }})
           }
         ]
       );
-      // You can then return this straight
-      return res.send(report);
+      // You can then return this straightr
+      res.write(report);
+      res.end();
+      return ;
  
 }
 export default exportUserForExcel;

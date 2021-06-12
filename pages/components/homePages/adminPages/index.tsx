@@ -110,7 +110,8 @@ const HomePage = () =>{
     const handelerExportExcel = async(e) =>{
         e.preventDefault();
         setIsLoading(false);
-        const data = await exportUserForExcelAPI(true);
+        await exportUserForExcelAPI(true);
+        console.log("***************************")
         setIsLoading(true);
     }
     //* BEGIN BZ00033
