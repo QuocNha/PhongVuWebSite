@@ -31,3 +31,4 @@ data + secert : token
 token+ secert :data
 
 When user login  has Token initialized.
+*BZ00032            130621     Delete for user

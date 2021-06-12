@@ -60,6 +60,10 @@ var  UserSchema =  new mongoose.Schema({
     img :{
         type: String
 
+    },
+    isDelete:{
+        type:Boolean,
+        default:false
     }
 
 });

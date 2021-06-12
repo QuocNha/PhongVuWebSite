@@ -7,6 +7,7 @@
 *BZ00022            070621     Create addUserPages
 *BZ00028            070621     Loading For AdminPages
 *BZ00030            100621     Search for list User
+*BZ00031            130621     Delete for user
 
 ************************************************************************
 */
@@ -16,7 +17,7 @@ import { useSelector, useDispatch } from "react-redux";// BZ00016
 import Router from 'next/router';
 import {getUser,checkTokenUser,getAllUser} from '../../../../redux/actions/userActions';
 import styles from './adminPases.module.scss';
-import { Menu, Table ,Divider } from 'antd';
+import { Menu, Table ,Divider,Tooltip } from 'antd';
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import AddUserPages from "./addUserPages";
 import Loading from '../../../../utils/loading';//BZ00028
@@ -122,6 +123,26 @@ const HomePage = () =>{
                 //console.log("Text"+text);
                   return (
                          <div><img src={text} alt="avatar" style={{ width: '100%' }} /></div>
+                     )
+                 }
+        },
+        {
+            title: "Action",
+            key: "action",
+            render: () => {
+                //console.log("Text"+text);
+                  return (
+                        <React.Fragment>
+                        <Tooltip placement="top" title="Duyệt">
+                        <i
+                        className="fa fa-check-circle"
+                        data-toggle="modal"
+                        // data-target={"#approval-order-" + index}
+                        style={{ cursor: "pointer", marginRight: "10px" }}
+                        // onClick={this.setValueModalUpdate}
+                        ></i>
+                    </Tooltip>
+                        </React.Fragment>
                      )
                  }
         }

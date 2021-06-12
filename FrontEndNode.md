@@ -22,4 +22,6 @@ npm i react-loading
 *BZ00028            070621     Loading For AdminPages
 *BZ00029           060621     Install monent for convert Date
 npm i moment
-*BZ0030            230521     Search for list User
+*BZ00030            100621     Search for list User
+*BZ00031            120621     Search with  Time for User
+*BZ00032            130621     Delete for user

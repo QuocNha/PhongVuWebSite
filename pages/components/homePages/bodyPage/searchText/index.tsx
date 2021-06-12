@@ -1,16 +1,20 @@
 /*
-*BZ0030            100621     Search for list User
+*BZ00030            100621     Search for list User
+*BZ00031            120621     Search Time for User
 */
 import React,{useState} from "react";
 import styles from './searchText.module.scss';
 import SearchOutlined from'@ant-design/icons';
 import getAllUser from '../../../../../constant.config.api/getAllUserAPI';
+import {Space,DatePicker} from 'antd';
+import moment from 'moment';
+const { RangePicker } = DatePicker;
 
 const searchText = (...prosp) =>{
   const [typeStatus,setTypeStatus] = useState("userName");
   const [typeUser,setTypeUser] = useState("Staff");
-
-  
+  const [dateStart,setDateStart] = useState(moment());
+  const [dateEnd,setDateEnd] = useState(moment());   
   const  handelerStatus = async(e) =>{
     e.preventDefault(); 
     if(e.target.value && e.target.value!=null){
@@ -29,6 +33,15 @@ const searchText = (...prosp) =>{
       setTypeUser(e.target.value);
     }
     
+  }
+  const handelerCreateAt = async(dates, dateStrings) => {
+    setDateStart(dates[0]);
+    setDateEnd(dates[1]);
+//(moment(dates[0].toISOString()).format('DD-MM-YYYY'))
+    console.log('From: ',        ', to: ',  moment(dates[0]).format('DD-MM-YYYY')
+    );
+    
+    console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
   }
   // const  handelervalueSearch = (e) =>{
   //   e.preventDefault(); 
@@ -54,35 +67,22 @@ const searchText = (...prosp) =>{
       }
    const hadlerSearch = async(e) =>{
     e.preventDefault();
-    // console.log("valueStatus",valueStatus);
-    //  console.log('valueSearch ',valueSearch);
-    //  console.log('props ',prosp);
      prosp[0].CallBackIsloading(false);
      const  data = await getAllUser(1,(prosp[0].lengthListUser)-1);
+     console.log("data",data);
     //default : createAt, userName, useRole
     if(typeStatus==="userName"){
       let valueSearch = (document.getElementById("valueSearch") as HTMLInputElement).value;
-      
-      // console.log("data",(prosp[0].lengthListUser)-1);
-      // prosp[0].isLoading=false;
-      // console.log("data",data.data.data);
       const temp = data.data.data.filter((item) => {
         var index = item.userName.indexOf("@");
         var name = item.userName.substring(0, index);
         let nameFix = Delete_Text_VN(name).toLowerCase();
         let inputfix = Delete_Text_VN(valueSearch).toLowerCase();
-        // console.log("inputfix",inputfix);
-        // console.log("nameFix",nameFix);
         return nameFix.includes(inputfix);
     });
     prosp[0].CallBackIsloading(true);
-    prosp[0].CallBackIsUserDataSearch(temp,true,temp.length>0?temp.length:0);
-    // console.log("Team",temp);
-         
+    prosp[0].CallBackIsUserDataSearch(temp,true,temp.length>0?temp.length:0);       
     }else if(typeStatus==="userType"){
-      // console.log("data",(prosp[0].lengthListUser)-1);
-      // prosp[0].isLoading=false;
-      // console.log("data",data.data.data);
       const temp = data.data.data.filter((item) => {
         let nameFix = Delete_Text_VN(item.userType).toLowerCase();
         let inputfix = Delete_Text_VN(typeUser).toLowerCase();
@@ -90,28 +90,53 @@ const searchText = (...prosp) =>{
     });
     prosp[0].CallBackIsloading(true);
     prosp[0].CallBackIsUserDataSearch(temp,true,temp.length>0?temp.length:0);
-   
-         
+    //BEGIN BZ00031
     }else if(typeStatus==="createAt"){
-      
-    alert("Plaese Select Other type");
+      let startDate= (moment(dateStart.toISOString())).format('DD-MM-YYYY');
+      let endDate= (moment(dateEnd.toISOString())).format('DD-MM-YYYY');
+      const temp = data.data.data.filter((item) => {
+       return (
+         Date.parse((startDate)) <= Date.parse(item.createAt) 
+          //Date.parse((item.CreateAt)) <= Date.parse((endDate)) 
+       );
+       });
+       temp .filter((item) => {
+       return (
+         //Date.parse((startDate)) <= Date.parse(item.createAt) 
+        Date.parse((item.CreateAt)) <= Date.parse((endDate)) 
+        
+       );
+       });
+       prosp[0].CallBackIsloading(true);
+       prosp[0].CallBackIsUserDataSearch(temp,true,temp.length>0?temp.length:0);  
          
     }
+    //END BZ00031
     
    }
 return <React.Fragment>
 
     <div className={styles.containerSearchtext}>
         <div>
- 
            {typeStatus==="userName"?
             <div className={styles.containerSearchtextInput}>
               <input id="valueSearch" />
             </div>:
-            typeStatus==="createAt"?
-            <div className={styles.containerSearchtextInput}>
-                <input id="valueSearch" />
-            </div>:
+          // BEGIN BZ00031
+          typeStatus==="createAt"?
+            // <div className={styles.containerSearchtextInput}>
+              <RangePicker
+              format={'DD-MM-YYYY'}
+              ranges={{
+              Today: [moment(), moment()],
+              'This Month': [moment().startOf('month'), moment().endOf('month')],
+              }}
+              style={{height:'3em'}}
+            onChange={handelerCreateAt}
+          />
+          //END BZ00031
+            // </div>
+            :
             typeStatus==="userType"?
             <div className={styles.containerTypeUsertextSelect}>
             <select
@@ -132,9 +157,7 @@ return <React.Fragment>
           </div>:
           ""}
          
-        </div>
-        
-        
+        </div>        
         <div className={styles.containerSearchtextSelect}>
         <select
                   className={styles.containerSearchtextSelect}
