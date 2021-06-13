@@ -152,11 +152,15 @@ const homeSignUp = () =>{
                             Submit
                         </Button>
                         </div>
+                        
                     </form>
                     {/* END BZ00012 */}
                 </div>
             </div>
+            <div className={styles.footer}>
+            </div>
         </div>
+        
 </React.Fragment>
 }
 export default homeSignUp;

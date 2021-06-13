@@ -1,10 +1,10 @@
 /*
-*BZ00017            050621     Create validaton for Yup to login user 
+*BZ00017            050621     Create validaton for Yup to login user
+*BZ00034            130621     Responsive for login user pages
 ************************************************************************
 */
 #homeSignUp{
     background: #223A47;
-    padding-top: 150px;
     .homeSignUpForBorder{
         display: grid;
         grid-template-rows: 1fr  1fr;
@@ -20,7 +20,6 @@
             span{
                 font-family: 'Pacifico';
                 color: #FFB5A6;
-                transform: translate(40px,30px);
             }
         }
     .container{
@@ -217,6 +216,10 @@
             }
 
         }
+        .footer{
+            height: 50px;
+            min-height: fit-content;
+        }
         
 
     }
@@ -227,6 +230,280 @@
         padding-bottom: 0px;
         margin: 0px;
         padding: 0px;
+        .homeSignUpForBorder{
+            padding: 0px;
+            .titleHolder{
+                width: 480px;
+                margin: 0px;
+                padding: 0px;
+                padding-bottom:0px;
+                display: grid;
+                grid-template-rows: 1fr  1fr;
+                text-align: center;
+                h2{
+                    width: 480px;
+                    font-size: 22px;
+                    margin: 0px;
+                }
+                span{
+                    font-size: 52px;
+                    font-family: 'Pacifico';
+                    transform: translate(60px,30px);
+                }
+            }
+        }
+        .container{
+            text-align: left;
+            padding: 1rem;
+            position: initial;
+            .containerForm{
+                padding: 0.5em;
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+                .containerFormEmail{
+                    display: grid;
+                    grid-template-rows: 1fr 1fr;
+                    input{         
+                        font-size: 17px;
+                        height: auto;
+                        min-height: auto;
+                        height: 3.2em;
+                        overflow: hidden;
+                        border-radius: .25em;
+                        
+                        }
+                        label{
+                        padding-top: 1.2rem;
+                        padding-bottom: 1.2rem;
+                        font-family: "Fredericka the Great";
+                        font-size: 17px;
+                        transition: ease  0.25s all ;
+                        }
+                }
+            }
+            .containerFormButton{
+                height: 6em;
+                padding: 1em;
+                text-align: center;
+            }
+
+        }
+        .footer{
+            height: 300px;
+            min-height: fit-content;
+        }
+
 
     }
+    @media(max-width:600px) {
+        width: 600px;
+        .homeSignUpForBorder{
+            padding: 0px;
+            .titleHolder{
+                width: 600px;
+                h2{
+                    width: 600px;
+                    font-size: 28px;
+                }
+                span{
+                    font-size: 58px;
+                    font-family: 'Pacifico';
+                    transform: translate(80px,30px);
+                }
+            }
+        }
+        .container{
+            padding: 1rem;
+            .containerForm{
+                padding: 0.5em;
+                .containerFormEmail{
+                    input{         
+                        font-size: 23px;
+                        height: 3.8em;
+                        border-radius: .31em;
+                        
+                        }
+                        label{
+                        padding-top: 1.6rem;
+                        padding-bottom: 1.6rem;
+                        font-family: "Fredericka the Great";
+                        font-size: 23px;
+                        transition: ease  0.25s all ;
+                        }
+                }
+            }
+
+        }
+       
+
+    }
+    @media(max-width:768px) {
+        width: 768px;
+        .homeSignUpForBorder{
+            padding: 0px;
+            .titleHolder{
+                width: 768px;
+                h2{
+                    width: 768px;
+                    font-size: 32px;
+                }
+                span{
+                    font-size: 62px;
+                    font-family: 'Pacifico';
+                    transform: translate(0px,0px);
+                }
+            }
+        }
+        .container{
+            padding: 1rem;
+            .containerForm{
+                padding: 0.5em;
+                .containerFormEmail{
+                    input{         
+                        font-size: 26px;
+                        height: 3.8em;
+                        border-radius: .31em;
+                        
+                        }
+                        label{
+                        padding-top: 1.6rem;
+                        padding-bottom: 1.6rem;
+                        font-family: "Fredericka the Great";
+                        font-size: 26px;
+                        transition: ease  0.25s all ;
+                        }
+                }
+            }
+
+        }
+    }
+    @media(max-width:800px) {
+        width: 800px;
+        .homeSignUpForBorder{
+            padding: 0px;
+            .titleHolder{
+                width: 800px;
+                h2{
+                    width: 800px;
+                    font-size: 36px;
+                }
+                span{
+                    font-size: 64px;
+                    font-family: 'Pacifico';
+                    transform: translate(0px,0px);
+                }
+            }
+        }
+        .container{
+            padding: 1rem;
+            margin-left: 25%;
+            margin-right: 15%;
+            .containerForm{
+                padding: 0.5em;
+                .containerFormEmail{
+                    input{         
+                        font-size: 28px;
+                        height: 3.9em;
+                        border-radius: .32em;
+                        
+                        }
+                        label{
+                        padding-top: 1.6rem;
+                        padding-bottom: 1.6rem;
+                        font-family: "Fredericka the Great";
+                        font-size: 28px;
+                        transition: ease  0.25s all ;
+                        }
+                }
+            }
+
+        }
+    }
+    @media(max-width:1024px) {
+        width: 1024px;
+        .homeSignUpForBorder{
+            padding: 0px;
+            .titleHolder{
+                width: 1024px;
+                h2{
+                    width: 1024px;
+                    font-size: 36px;
+                }
+                span{
+                    font-size: 64px;
+                    font-family: 'Pacifico';
+                    transform: translate(0px,0px);
+                }
+            }
+        }
+        .container{
+            padding: 1rem;
+            margin-left: 25%;
+            margin-right: 15%;
+            .containerForm{
+                padding: 0.5em;
+                .containerFormEmail{
+                    input{         
+                        font-size: 28px;
+                        height: 3.9em;
+                        border-radius: .32em;
+                        
+                        }
+                        label{
+                        padding-top: 1.6rem;
+                        padding-bottom: 1.6rem;
+                        font-family: "Fredericka the Great";
+                        font-size: 28px;
+                        transition: ease  0.25s all ;
+                        }
+                }
+            }
+
+        }
+    }
+    @media(min-width:1024px) {
+        width: 100%;
+        .homeSignUpForBorder{
+            padding: 0px;
+            .titleHolder{
+                width: 100%;
+                h2{
+                    width: 100%;
+                    font-size: 36px;
+                }
+                span{
+                    font-size: 64px;
+                    font-family: 'Pacifico';
+                    transform: translate(0px,0px);
+                }
+            }
+        }
+        .container{
+            padding: 1rem;
+            .containerForm{
+                padding: 0.5em;
+                padding: 1rem;
+                margin-left: 25%;
+                margin-right: 15%;
+                position: initial;
+                .containerFormEmail{
+                    input{         
+                        font-size: 28px;
+                        height: 3.9em;
+                        border-radius: .32em;
+                        
+                        }
+                        label{
+                        padding-top: 1.6rem;
+                        padding-bottom: 1.6rem;
+                        font-family: "Fredericka the Great";
+                        font-size: 28px;
+                        transition: ease  0.25s all ;
+                        }
+                }
+            }
+
+        }
+    }    
+    
 }

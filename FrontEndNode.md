@@ -26,3 +26,4 @@ npm i moment
 *BZ00031            120621     Search with  Time for User
 *BZ00032            130621     Delete for user
 *BZ00033             130621     Export excel  for user
+*BZ00034            130621     Responsive for login user pages
