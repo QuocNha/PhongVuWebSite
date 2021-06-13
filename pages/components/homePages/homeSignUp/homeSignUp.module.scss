@@ -4,97 +4,229 @@
 */
 #homeSignUp{
     background: #223A47;
-    // padding-top: 150px;
-    padding-bottom: 300px;
-    
-    .titleHolder{
-        width: 80%;
-        padding-bottom: 60px;
-        border-bottom: 1px solid rgba($color:#223A47, $alpha: 0.5);
-        margin-bottom: 60px;
-       
-    }
-    h2{
-        line-height: 1;
-       color: white; 
-       margin-top: 0px;
-       margin-bottom: 8px;
-    //    padding-top: 108px;
-       
-        span{
-            font-size: 160px;
-            display: block;
-            font-family: 'Pacifico';
-            color: #FFB5A6;
-            transform: translate(140px,30px);
-            @media(max-width:1440px) {
-                font-size: 120px;
-                transform: translate(120px,15px);
-
+    padding-top: 150px;
+    .homeSignUpForBorder{
+        display: grid;
+        grid-template-rows: 1fr  1fr;
+        padding: 0px;
+        .titleHolder{
+            display: grid;
+            grid-template-rows: 1fr  1fr;
+            text-align: center;
+            h2{
+                color: white; 
+                text-align: center;
             }
-            @media(max-width:992px) {
-                font-size: 60px;
-                transform: translate(60px,0px);
-                
+            span{
+                font-family: 'Pacifico';
+                color: #FFB5A6;
+                transform: translate(40px,30px);
             }
         }
-        font-size: 72px;
-        font-family: 'Fredericka the Great';
-        transform: translate(140px,30px);
-        @media(max-width:1440px) {
-            font-size: 60px;
-            
-            
-        }
-        @media(max-width:992px) {
-            font-size: 36px;
-            transform: translate(130px,15px);
-            
-        }
-    }
     .container{
-       text-align: left;
-       padding: 1rem;
-       margin-left: 30%;
-       margin-right: 15%;
-       position: initial;
-        input{         
+        text-align: left;
+        position: initial;
+        .containerForm{
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            .containerFormEmail{
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+                input{         
+                    color: black;
+                    height: auto;
+                    min-height: auto;
+                    line-height: initial;
+                    position: relative;
+                    display: flex;
+                    background: #2c3e50;
+                    overflow: hidden;
+                    border-radius: .25em;
+                    
+                    }
+                    label{
+                    font-family: "Fredericka the Great";
+                    cursor: pointer;
+                    color: #f27257;
+                    transition: ease  0.25s all ;
+                    }
+            }
+        }
+        .containerFormButton{
+            height: 6em;
             padding: 1em;
-            font-size: 15px;
-            color: black;
-            background: white;
-            height: auto;
-            min-height: auto;
-            line-height: initial;
+            text-align: center;
         }
-        label{
-           
-        padding: 1rem;
-        font-family: "Fredericka the Great";
-        cursor: pointer;
-        font-size: 40px;
-         color: #f27257;
-         transition: ease  0.25s all ;
         }
-        .input{
-            width:50%;
-        
-        }
-        .button{
-            margin-top: 20px;
-            margin-bottom: 10px;
-            margin-right: 10px;
-            margin-left: 0px;
-            font-size: 20px;
-        
-        }
-        
+
     }
+    // padding-bottom: 300px;
+    // .titleHolder{
+    //     width: 100%;
+    //     padding-bottom: 60px;
+    //     border-bottom: 1px solid rgba($color:#223A47, $alpha: 0.5);
+    //     margin-bottom: 60px;
+          
+    
+    // h2{
+    //    color: white; 
+    //    margin-top: 0px;
+    //    margin-bottom: 8px;
+    // //    padding-top: 108px;
+       
+    //     span{
+    //         font-size: 160px;
+    //         display: block;
+    //         font-family: 'Pacifico';
+    //         color: #FFB5A6;
+    //         transform: translate(140px,30px);
+    //         // @media(max-width:1440px) {
+    //         //     font-size: 120px;
+    //         //     // transform: translate(120px,15px);
+
+    //         // }
+    //         // @media(max-width:992px) {
+    //         //     font-size: 60px;
+    //         //     // transform: translate(60px,0px);
+                
+    //         // }
+    //     }
+    //     font-size: 72px;
+    //     font-family: 'Fredericka the Great';
+    //     transform: translate(140px,30px);
+    //     // @media(max-width:1440px) {
+    //     //     font-size: 60px;
+            
+            
+    //     // }
+    //     // @media(max-width:992px) {
+    //     //     font-size: 36px;
+    //     //     transform: translate(130px,15px);
+            
+    //     // }
+    // }
+    // }
+    // .container{
+    //    text-align: left;
+    //    padding: 1rem;
+    //    margin-left: 30%;
+    //    margin-right: 15%;
+    //    position: initial;
+    //     input{         
+    //         padding: 1em;
+    //         font-size: 15px;
+    //         color: black;
+    //         background: white;
+    //         height: auto;
+    //         min-height: auto;
+    //         line-height: initial;
+    //     }
+    //     label{
+           
+    //     padding: 1rem;
+    //     font-family: "Fredericka the Great";
+    //     cursor: pointer;
+    //     font-size: 40px;
+    //      color: #f27257;
+    //      transition: ease  0.25s all ;
+    //     }
+    //     .input{
+    //         width:50%;
+        
+    //     }
+    //     .button{
+    //         margin-top: 20px;
+    //         margin-bottom: 10px;
+    //         margin-right: 10px;
+    //         margin-left: 0px;
+    //         font-size: 20px;
+        
+    //     }
+        
+    // }
     //BEGIN BZ00017
     .errorText{
         color: red;
         font-size: 18px;
     }
     //END BZ00017
-   
+    @media(max-width:320px) {
+        width: 320px;
+        overflow-y:hidden;
+        padding-bottom: 0px;
+        margin: 0px;
+        padding: 0px;
+        .homeSignUpForBorder{
+            display: grid;
+            grid-template-rows: 1fr  1fr;
+            padding: 0px;
+            .titleHolder{
+                width: 320px;
+                margin: 0px;
+                padding: 0px;
+                padding-bottom:0px;
+                display: grid;
+                grid-template-rows: 1fr  1fr;
+                text-align: center;
+                h2{
+                    width: 320px;
+                    font-size: 20px;
+                    margin: 0px;
+                }
+                span{
+                    font-size: 50px;
+                    font-family: 'Pacifico';
+                    transform: translate(40px,30px);
+                }
+            }
+        .container{
+            text-align: left;
+            padding: 1rem;
+            position: initial;
+            .containerForm{
+                padding: 0.5em;
+                display: grid;
+                grid-template-rows: 1fr 1fr;
+                .containerFormEmail{
+                    display: grid;
+                    grid-template-rows: 1fr 1fr;
+                    input{         
+                        font-size: 15px;
+                        height: auto;
+                        min-height: auto;
+                        height: 3em;
+                        overflow: hidden;
+                        border-radius: .25em;
+                        
+                        }
+                        label{
+                        padding-top: 1rem;
+                        font-family: "Fredericka the Great";
+                        cursor: pointer;
+                        font-size: 15px;
+                        color: #f27257;
+                        transition: ease  0.25s all ;
+                        }
+                }
+            }
+            .containerFormButton{
+                height: 6em;
+                padding: 1em;
+                text-align: center;
+            }
+            }
+
+        }
+        
+
+    }
+    @media(max-width:480px) {
+        width: 480px;
+        height: 100%;
+        overflow-y:hidden;
+        padding-bottom: 0px;
+        margin: 0px;
+        padding: 0px;
+
+    }
 }

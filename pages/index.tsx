@@ -18,15 +18,7 @@ export default function Home() {
       <div className="root">
         {/* <HomePage key="HomePage"></HomePage> */}
         {/* <HeaderPage></HeaderPage> */}
-        <div className={styles.container}>
-          <div className={styles.containerImg}>
-          </div>
-          <div className={styles.containerFormLogin}>
           <HomeSignUp key="HomeSignUp"></HomeSignUp>
-          </div> 
-        </div>
-
-         
       </div>
     </React.Fragment>
   )

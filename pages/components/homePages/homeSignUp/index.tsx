@@ -96,20 +96,20 @@ const homeSignUp = () =>{
         <div id={styles.homeSignUp}>
             <div className={styles.homeSignUpForBorder}>
                 <div className={styles.titleHolder}>
-                    <Grid container>
-                        <h2>
-                            <span>Sign Up</span>
+                    <div></div>
+                    <div>
+                    <span>Sign Up</span>
+                    <h2>
                         Subscribe to your email  newsletter
                     </h2>
-                    </Grid>
-                </div>
+                    </div>  
+                </div>   
                 <div className={styles.container}>
                     <Loading isLoading={isLoading}></Loading>  {/* BZ00027 */}  
-                    
                     {/* BEGIN BZ00012 */}
                     <form onSubmit={formik.handleSubmit}>
-                        <Grid container spacing={3}>
-                            <Grid item lg={12}>
+                        <div className={styles.containerForm}>
+                            <div className={styles.containerFormEmail}>
                                 <InputLabel htmlFor="email">Email Address :</InputLabel>
                                 {formik.touched.email && formik.errors.email ? (
                               <div className={styles.errorText}>{formik.errors.email}</div>
@@ -123,8 +123,8 @@ const homeSignUp = () =>{
                                     onChange={formik.handleChange}
                                     value={formik.values.email}
                                 />
-                            </Grid>
-                            <Grid item lg={12}>
+                            </div>
+                            <div className={styles.containerFormEmail}>
                                 <InputLabel htmlFor="email">PassWorld :</InputLabel>
                                 {/* BEGIN BZ00017  */}
                                 {formik.touched.password && formik.errors.password ? (
@@ -140,8 +140,9 @@ const homeSignUp = () =>{
                                     value={formik.values.password}
                                 />
 
-                            </Grid>
-                        </Grid>
+                            </div>
+                        </div>
+                        <div className={styles.containerFormButton}>
                         <Button
                             type="submit"
                             variant="contained"
@@ -150,6 +151,7 @@ const homeSignUp = () =>{
                         >
                             Submit
                         </Button>
+                        </div>
                     </form>
                     {/* END BZ00012 */}
                 </div>
