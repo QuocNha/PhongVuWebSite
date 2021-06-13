@@ -10,6 +10,7 @@
 
 import React,{useEffect,useState,useMemo} from "react";
 import styles from './homeSignUp.module.scss';
+import Head from 'next/head'
 //BEGIN BZ00012
 import { isEmptyChildren, useFormik } from 'formik';
 import * as Yup from "yup";
@@ -93,6 +94,11 @@ const homeSignUp = () =>{
     // console.log("state111111111111111",state);
     //END BZ00016
     return <React.Fragment>
+    <Head key="Head">
+        <title>PhongVu</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" /> 
+        <link rel="icon" href="/P.png" />
+    </Head>
         <div id={styles.homeSignUp}>
             <div className={styles.homeSignUpForBorder}>
                 <div className={styles.titleHolder}>

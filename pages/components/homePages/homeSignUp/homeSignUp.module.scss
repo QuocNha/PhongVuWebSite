@@ -149,9 +149,9 @@
         font-size: 18px;
     }
     //END BZ00017
-    @media(max-width:320px) {
+    @media only screen and (min-width: 320px) {
         width: 320px;
-        overflow-y:hidden;
+        // overflow-y:hidden;
         padding-bottom: 0px;
         margin: 0px;
         padding: 0px;
@@ -223,10 +223,10 @@
         
 
     }
-    @media(max-width:480px) {
+    @media only screen and (min-width: 480px) {
         width: 480px;
         height: 100%;
-        overflow-y:hidden;
+        // overflow-y:hidden;
         padding-bottom: 0px;
         margin: 0px;
         padding: 0px;
@@ -295,7 +295,7 @@
 
 
     }
-    @media(max-width:600px) {
+    @media only screen and (min-width: 600px) {
         width: 600px;
         .homeSignUpForBorder{
             padding: 0px;
@@ -337,7 +337,7 @@
        
 
     }
-    @media(max-width:768px) {
+    @media only screen and (min-width: 768px) {
         width: 768px;
         .homeSignUpForBorder{
             padding: 0px;
@@ -377,7 +377,7 @@
 
         }
     }
-    @media(max-width:800px) {
+    @media only screen and (min-width: 800px) {
         width: 800px;
         .homeSignUpForBorder{
             padding: 0px;
@@ -396,7 +396,7 @@
         }
         .container{
             padding: 1rem;
-            margin-left: 25%;
+            margin-left: 15%;
             margin-right: 15%;
             .containerForm{
                 padding: 0.5em;
@@ -419,7 +419,7 @@
 
         }
     }
-    @media(max-width:1024px) {
+    @media only screen and (min-width: 1024px) {
         width: 1024px;
         .homeSignUpForBorder{
             padding: 0px;
@@ -438,7 +438,7 @@
         }
         .container{
             padding: 1rem;
-            margin-left: 25%;
+            margin-left: 15%;
             margin-right: 15%;
             .containerForm{
                 padding: 0.5em;
@@ -461,7 +461,7 @@
 
         }
     }
-    @media(min-width:1024px) {
+    @media only screen and (max-width: 2048px) {
         width: 100%;
         .homeSignUpForBorder{
             padding: 0px;
@@ -483,8 +483,8 @@
             .containerForm{
                 padding: 0.5em;
                 padding: 1rem;
-                margin-left: 25%;
-                margin-right: 15%;
+                // margin-left: 25%;
+                // margin-right: 15%;
                 position: initial;
                 .containerFormEmail{
                     input{         
