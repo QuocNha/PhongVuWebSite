@@ -38,10 +38,9 @@ const searchText = (...prosp) =>{
     setDateStart(dates[0]);
     setDateEnd(dates[1]);
 //(moment(dates[0].toISOString()).format('DD-MM-YYYY'))
-    console.log('From: ',        ', to: ',  moment(dates[0]).format('DD-MM-YYYY')
-    );
+   // console.log('From: ',        ', to: ',  moment(dates[0]).format('DD-MM-YYYY'));
     
-    console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+    //console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
   }
   // const  handelervalueSearch = (e) =>{
   //   e.preventDefault(); 
@@ -69,7 +68,7 @@ const searchText = (...prosp) =>{
     e.preventDefault();
      prosp[0].CallBackIsloading(false);
      const  data = await getAllUser(1,(prosp[0].lengthListUser)-1);
-     console.log("data",data);
+    // console.log("data",data);
     //default : createAt, userName, useRole
     if(typeStatus==="userName"){
       let valueSearch = (document.getElementById("valueSearch") as HTMLInputElement).value;

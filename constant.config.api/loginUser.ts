@@ -29,7 +29,7 @@ async function loginUser(user:any) {
         })
         .catch(function (err) {
             data = err.response;
-            console.log("Data",data)
+            //console.log("Data",data)
         });
 
     return data;

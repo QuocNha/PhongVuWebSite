@@ -4,58 +4,56 @@
 *BZ0008            050921     Edit Text for Adrress  header
 *BZ0009            050921     Click "Login for User"  change font size Text.
 *BZ00010           050921     Fix Top Header Position.
+*BZ00035           140621     Responsive for hearder.
+
 ************************************************************************
 */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredericka+the+Great&display=swap');
 #header{
-    position: relative;
+     position: relative;
     .header{
-        height: 150px;
-        padding-bottom: 10px;
+        // height: 150px;
+         padding-bottom: 20px;
         .container{
             //BEGIN BZ00010
-            // overflow: hidden;
-            //  position: fixed;
-             top: 0;
-             width: 100%;
+            overflow: hidden;
+            top: 0;
+             //width: 100%;
             background: #223a47;;
             //END BZ00010
             padding: 1rem;
-            display: grid;
+            //display: grid;
             //dotted, dashed, double, groove, ridge, inset, outset, none, hidde, "dotted dashed solid double;"
             border: 1px double #2c2c2c;
             // BEGIN BZ0007
-            grid-template-columns: 420px 600px 420px;
+            //grid-template-columns: 420px 600px 420px;
             // END BZ0007
             .logo{
-                width: 275px;
                 font-size: 25px;
                 color: #fff;
                 font-family: 'Dancing Script', cursive;
-                display: block;
-                margin-left: 3rem;
             }
             .headerContact{
-                padding: 1rem;
-                font-size: 18px;
-                font-weight: 500;
-                display: grid;
-                text-align: center;
-                grid-template-rows: 45% 45%;
+                 padding: 1rem;
+                 font-size: 18px;
+                 font-weight: 500;
+                 display: grid;
+                 text-align: center;
+                 grid-template-rows: 45% 45%;
                 .headerContactAdress{
-                    display: grid;
-                    grid-template-columns: 50% 50%;
+                     display: grid;
+                     grid-template-columns: 50% 50%;
                     //BEGIN BZ0008               
                     .headerContactAdressForTel{
-                        text-align: left;
-                        font-family: "Fredericka the Great";
-                        color: #fff;
+                         text-align: left;
+                         font-family: "Fredericka the Great";
+                         color: #fff;
 
                     }
                     .headerContactAdressForAddress{
-                        text-align: right;
-                        font-family: "Fredericka the Great";
-                        color: #fff;
+                         text-align: right;
+                         font-family: "Fredericka the Great";
+                         color: #fff;
 
                     }
                     //END BZ0008               
@@ -63,35 +61,33 @@
                 }
                 .reservationButton{
                     font-family: "Fredericka the Great";
-                    border: 1px dotted #f27257;
-                    display: inline-block;
-                    color: #fff;
-                    padding: 0.5rem 1rem;
-                    border-radius: 0.25rem;
-                    transition: 0.25s ease all;
-                    cursor: pointer;
-                    flex-direction: none;
+                     border: 1px dotted #f27257;
+                     display: inline-block;
+                     color: #fff;
+                     //padding: 0.5rem 1rem;
+                     border-radius: 0.25rem;
+                     transition: 0.25s ease all;
+                     cursor: pointer;
+                     flex-direction: none;
                     &:hover{
-                        background-color: #f27257;
-                        color: white;
-                        //BEGIN BZ0009
-                        font-size: 25px;  
-                        transition: 0.25s ease all;
-                        //END BZ0009
+                         background-color: #f27257;
+                         color: white;
+                         //BEGIN BZ0009
+                         font-size: 25px;  
+                         transition: 0.25s ease all;
+                        // //END BZ0009
 
                     }
                 }
             }
             .headerSaleIcon{
-                text-align: center;
-                padding: 1rem;
+                 text-align: center;
+                 padding: 1rem;
                 .headerSaleIcoList{
-                    text-align: center;
+                     text-align: center;
                     .facebook{
-                        // background-color: blue;
-                        font-size: 40px;
-                        margin-left: 0.5rem;
-                        color: rgb(199, 134, 134);
+                         margin-left: 0.5rem;
+                         color: #1890ff;
                         //hover giảm màu
                             }
                 }
@@ -110,5 +106,337 @@
         }
     }
     /* END BZ0006*/
+    @media only screen and (min-width: 320px) {
+        
+        .header{
+            .container{
+                display: grid;
+                grid-template-rows:1fr  1fr;
+                .logo{
+                    font-size: 25px;
+                    margin-left: 0rem;
+                }
+                .buttonListMenu{
+                   display: none; 
+                }
+                .headerContact{
+                    display:none;
+                }
+            .headerSaleIcon{
+                display: flex;
+                padding: 1em;
+                padding: 1rem;
+                 .headerSaleIcoList{
+                   .facebook{
+                        font-size: 23px;
+                        margin-left: 0.5rem;
+                        
+                       //hover giảm màu
+                }
+                  }
+                }
+              
+                
+            }
+
+        }
+        
+    }
+    @media only screen and (min-width: 480px) {
+        
+        .header{
+            .container{
+                display: grid;
+                grid-template-columns:1fr  1fr;
+                .logo{
+                    font-size: 27px;
+                    margin-left: 0rem;
+                }
+                .buttonListMenu{
+                   display: none; 
+                }
+                .headerContact{
+                    display:none;
+                }
+            .headerSaleIcon{
+                display: flex;
+                padding-top:2.8em ;
+                 .headerSaleIcoList{
+                   .facebook{
+                        font-size: 25px;
+                        margin-left: 0.2rem;
+                       //hover giảm màu
+                }
+                  }
+                }
+              
+                
+            }
+
+        }
+        
+    }
+    @media only screen and (min-width: 600px) {
+        
+        .header{
+            .container{
+                display: grid;
+                grid-template-columns:1fr  1fr;
+                .logo{
+                    font-size: 29px;
+                    margin-left: 1rem;
+                }
+                .buttonListMenu{
+                   display: none; 
+                }
+                .headerContact{
+                    display:none;
+                }
+            .headerSaleIcon{
+                display: flex;
+                padding-top:3.0em ;
+                 .headerSaleIcoList{
+                   .facebook{
+                        font-size: 25px;
+                        margin-left: 0.2rem;
+                       //hover giảm màu
+                }
+                  }
+                }
+              
+                
+            }
+
+        }
+        
+    }
+    @media only screen and (min-width: 768px) {
+        
+        .header{
+            .container{
+                display: grid;
+                grid-template-columns:1fr  1fr;
+                .logo{
+                    font-size: 37px;
+                }
+                .buttonListMenu{
+                   display: none; 
+                }
+                .headerContact{
+                    display:none;
+                }
+            .headerSaleIcon{
+                display: flex;
+                padding-top:3.5em ;
+                 .headerSaleIcoList{
+                   .facebook{
+                        font-size: 28px;
+                        margin-left: 0.2rem;
+                       //hover giảm màu
+                }
+                  }
+                }
+              
+                
+            }
+
+        }
+        
+    }
+    @media only screen and (min-width: 800px) {
+        
+        .header{
+            .container{
+                display: grid;
+                grid-template-columns:1fr  1fr 1fr;
+                .logo{
+                    font-size: 30px;
+                }
+                .buttonListMenu{
+                   display: none; 
+                }
+                .headerContact{
+                    padding: 1rem;
+                    font-size: 18px;
+                    font-weight: 500;
+                    display: grid;
+                    text-align: center;
+                    // grid-template-rows: 45% 45%;
+                    .reservationButton{
+                        display: none;
+                    }
+                }
+            .headerSaleIcon{
+                display: flex;
+                padding-top:3.2em ;
+                 .headerSaleIcoList{
+                   .facebook{
+                        font-size: 28px;
+                        margin-left: 0.2rem;
+                       //hover giảm màu
+                }
+                  }
+                }
+              
+                
+            }
+
+        }
+        
+    }
+    @media only screen and (min-width: 1024px) {
+        
+        .header{
+            .container{
+                display: grid;
+                grid-template-columns:30% 40%  30% ;
+                .logo{
+                    font-size: 32px;
+                }
+                .buttonListMenu{
+                   display: none; 
+                }
+                .headerContact{
+                    padding: 1rem;
+                    font-size: 20px;
+                    font-weight: 500;
+                    display: grid;
+                    text-align: center;
+                    grid-template-rows: 1fr 1fr;
+                    .headerContactAdress{
+                     display: grid;
+                     grid-template-columns: 50% 50%;
+                    //BEGIN BZ0008               
+                    .headerContactAdressForTel{
+                         text-align: left;
+                         font-family: "Fredericka the Great";
+                         color: #fff;
+
+                    }
+                    .headerContactAdressForAddress{
+                         text-align: right;
+                         font-family: "Fredericka the Great";
+                         color: #fff;
+
+                    }
+                    //END BZ0008               
+
+                }
+                    .reservationButton{
+                        font-family: "Fredericka the Great";
+                     border: 1px dotted #f27257;
+                     display: inline-block;
+                     color: #fff;
+                     //padding: 0.5rem 1rem;
+                     border-radius: 0.25rem;
+                     transition: 0.25s ease all;
+                     cursor: pointer;
+                     flex-direction: none;
+                    &:hover{
+                         background-color: #f27257;
+                         color: white;
+                         //BEGIN BZ0009
+                         font-size: 25px;  
+                         transition: 0.25s ease all;
+                        // //END BZ0009
+
+                    }
+                    }
+                }
+            .headerSaleIcon{
+                display: flex;
+                padding-top:3.2em ;
+                 .headerSaleIcoList{
+                   .facebook{
+                        font-size: 28px;
+                        margin-left: 0.2rem;
+                       //hover giảm màu
+                }
+                  }
+                }
+              
+                
+            }
+
+        }
+        
+    }
+    @media only screen and (min-width: 2048px) {
+        
+        .header{
+            .container{
+                display: grid;
+                grid-template-columns:30% 40%  30% ;
+                .logo{
+                    font-size: 40px;
+                }
+                .buttonListMenu{
+                   display: none; 
+                }
+                .headerContact{
+                    padding: 1rem;
+                    font-size: 25px;
+                    font-weight: 500;
+                    display: grid;
+                    text-align: center;
+                    grid-template-rows: 1fr 1fr;
+                    .headerContactAdress{
+                     display: grid;
+                     grid-template-columns: 50% 50%;
+                    //BEGIN BZ0008               
+                    .headerContactAdressForTel{
+                         text-align: left;
+                         font-family: "Fredericka the Great";
+                         color: #fff;
+
+                    }
+                    .headerContactAdressForAddress{
+                         text-align: right;
+                         font-family: "Fredericka the Great";
+                         color: #fff;
+
+                    }
+                    //END BZ0008               
+
+                }
+                    .reservationButton{
+                        font-family: "Fredericka the Great";
+                     border: 1px dotted #f27257;
+                     display: inline-block;
+                     color: #fff;
+                     //padding: 0.5rem 1rem;
+                     border-radius: 0.25rem;
+                     transition: 0.25s ease all;
+                     cursor: pointer;
+                     flex-direction: none;
+                    &:hover{
+                         background-color: #f27257;
+                         color: white;
+                         //BEGIN BZ0009
+                         font-size: 28px;  
+                         transition: 0.25s ease all;
+                        // //END BZ0009
+
+                    }
+                    }
+                }
+            .headerSaleIcon{
+                display: flex;
+                padding-top:3.2em ;
+                 .headerSaleIcoList{
+                   .facebook{
+                        font-size: 28px;
+                        margin-left: 0.2rem;
+                       //hover giảm màu
+                }
+                  }
+                }
+              
+                
+            }
+
+        }
+        
+    }
     
 }

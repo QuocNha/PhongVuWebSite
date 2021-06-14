@@ -18,9 +18,9 @@ const deleteUser = async( {res,req,body: { email }})=>{
             errors: 'Cannot found  mail ' + email ,
           });
     }if(user){
-        console.log("User111111111",user);
+        //le.log("User111111111",user);
         if(user.isDelete){
-            console.log("user.isDelete111111111",);
+            //console.log("user.isDelete111111111",);
             let data = await User.findOneAndUpdate({
                 email:email,
                 isDeleted:false,
@@ -41,9 +41,9 @@ const deleteUser = async( {res,req,body: { email }})=>{
             }
 
         }else{
-            console.log("user.isDelete khong ton tai");
+            //console.log("user.isDelete khong ton tai");
             let data =User.collection.deleteOne({ email: email});
-            console.log("data1111111111111",data);
+            //console.log("data1111111111111",data);
             
             if(!data){
                 return res.status(400).json({

@@ -23,11 +23,12 @@ import Loading from '../../../../../utils/loading';//BZ00028
 //END BZ00024 checkAddPages
 
 const AddUserPages = (props) =>{
+    console.log("props",props);
     const dispatch = useDispatch();//BZ00025
     // BEGIN BZ00023
     const [imageUrl,setImageUrl] = useState();
     const [errorEmail,setErrorEmail]=useState<String>(null);
-    const [loading,setLoading] = useState(false);
+    const [loading,setLoading] = useState(true);
     const [userName,setUserName] =useState("");
     const [addUserSuccess,setAddUserSuccess] = useState(false);
     const HandelersNextAddUser = () =>{
@@ -50,7 +51,7 @@ const AddUserPages = (props) =>{
     }
    const handlersChangeIMG = info => {
         if (info.file.status === 'uploading') {
-            setLoading(true);
+            setLoading(false);
         }
         console.log("info.file.status",info.file.status);
         if (info.file.status === 'done') {
@@ -113,17 +114,19 @@ const AddUserPages = (props) =>{
             if(!result){
                 return ;
             }else{
-                document.getElementById("myLoading").hidden = true;
+               document.getElementById("myLoading").hidden = false;
                const data = await  addUserAPI(result);
                //console.log("data11111111111111111111111111111"+data);
                if(data.status===200){
                 setAddUserSuccess(true);
                 setUserName(data.data.data.email);
-                document.getElementById("myLoading").hidden = false;
+                dispatch(getAllUser(1,10));
+
                }else{
                    setErrorEmail(data.data.errors);
-                console.log("data11111111111111111111111111111"+data.data.errors); 
+                //console.log("data11111111111111111111111111111"+data.data.errors); 
                }
+               document.getElementById("myLoading").hidden = true;
             }
             //END BZ00025
         },
@@ -132,7 +135,7 @@ const AddUserPages = (props) =>{
     // END BZ00023  
    return <React.Fragment>
        <div className={styles.container}>
-       <Loading ></Loading>  {/* BZ00028 */}  
+       <Loading isLoading={loading}></Loading>  {/* BZ00028 */}  
            <div className={styles.containerAddUserTile}>
                <h1>User List</h1>
             </div>

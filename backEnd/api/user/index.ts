@@ -63,19 +63,19 @@ const loginAPI = async ( req,
 			//BEGIN BZ00021
 			if (req.method === 'GET') {
                 const body = { ...req.body }
-                console.log("req.body getAllUser",req.query);
+                //console.log("req.body getAllUser",req.query);
 				return await handlers['getAllUser']({ req, res, /* config, */ body });
 			}
 			//END BZ00021
 			//BEGIN
 			if (req.method === 'DELETE') {
 				const body = { ...req.body }
-                console.log("req.body deleteUser",req.body);
+                //console.log("req.body deleteUser",req.body);
 				return await handlers['deleteUser']({ req, res, /* config, */ body });
 			}
 			//END
 		} catch (error) {
-			console.error(error)
+			//console.error(error)
 			res.status(500).json({ data: null, errors: [{ message: error.message }], })
 		}
 	}

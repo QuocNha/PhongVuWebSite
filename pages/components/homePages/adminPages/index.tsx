@@ -92,7 +92,7 @@ const HomePage = () =>{
         // console.log("handerClickAction",e.target.value)
         setIsLoading(false);
         if(checkAction===true && type=="DELETE"){
-            console.log("email",email);
+            //console.log("email",email);
             setYesNoAction(false);
             let data=await deleteUserAPI(email);
             setCheckResetSearch(false);
@@ -111,7 +111,7 @@ const HomePage = () =>{
         e.preventDefault();
         setIsLoading(false);
         await exportUserForExcelAPI(true);
-        console.log("***************************")
+        //console.log("***************************")
         setIsLoading(true);
     }
     //* BEGIN BZ00033
@@ -186,9 +186,9 @@ const HomePage = () =>{
             key: "action",
             dataIndex:"action",
             render: (value, row, index) => {
-                console.log("Text"+value);
-                console.log("Data"+row);
-                console.log("Data"+index);
+                //console.log("Text"+value);
+                //console.log("Data"+row);
+                //console.log("Data"+index);
                   return (
                     <React.Fragment>
                     {yesNoAction===false || (yesNoAction===true && dataTableIndex!==index) ?

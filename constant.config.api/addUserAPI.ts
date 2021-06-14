@@ -37,7 +37,7 @@ const   addUserAPI = async(payload:any) => {
         
     )
         .then(function (response) {
-            console.log(response);
+            //console.log(response);
             ShowToast("Add user : "+response.data.data.email+" Sussucess.",'info');
             data = response;
         })

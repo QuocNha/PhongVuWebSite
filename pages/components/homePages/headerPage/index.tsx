@@ -3,6 +3,7 @@
 *BZ0005            032521     create a Header for the homepage
 *BZ0006            040121     create a Slider for website
 *BZ0008            050921     Edit Text for Adrress  header
+*BZ00034           140621     Responsive for hearder.
 ************************************************************************
 */
 import React,{useEffect} from "react";
@@ -15,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { getUser } from '../../../../redux/actions/userActions';
 import { Empty,Tag } from "antd";
+import {UnorderedListOutlined}  from '@ant-design/icons';
 import Router from 'next/router';
 
 const HeaderPage = (props:any) =>{
@@ -25,31 +27,36 @@ const HeaderPage = (props:any) =>{
   return<React.Fragment>
    <div id={styles.header}>
      <div className={styles.header}>
-       <div className={styles.container}>
-         <div className={styles.headerLogo}>
+        <div className={styles.container}>
+          <div className={styles.headerLogo}>
            <div className={styles.logo}>
              <h1><Link href='/'>Phong Van</Link></h1>
            </div>
-         </div>
-         <div className={styles.headerContact}>
-           <div className={styles.headerContactAdress}>
-          {/* BEGIN BZ0008 */}
-           <a className={styles.headerContactAdressForTel}>Tel: 0866085734</a>
-           <a className={styles.headerContactAdressForAddress}>Address: Nong lam Universerty</a>
-           {/* END BZ0008 */}
-           </div>
-           <div className={styles.reservationButton}><Link href='/components/homePages/homeSignUp'>Login for User</Link> </div>      
-         </div>
-         <div className={styles.headerSaleIcon}>
-         <div className={styles.headerSaleIcoList}>
-         <Link href="/" ><a> <AccountCircleIcon className={styles.facebook} /></a></Link>
-         <div>{props && props !=Empty? <Tag key="tab" closable   onClose={hadelerLoseUser}>
-            {props.data
+          </div>
+          <div className={styles.buttonListMenu}>
+          <UnorderedListOutlined />
+          </div>
+          <div className={styles.headerContact}>
+            <div className={styles.headerContactAdress}>
+            {/* BEGIN BZ0008 */}
+             <a className={styles.headerContactAdressForTel}>Tel: 0866085734</a>
+             <a className={styles.headerContactAdressForAddress}>Address: Nong lam</a>
+            {/* END BZ0008 */}
+            </div>
+            <div className={styles.reservationButton}><Link href='/components/homePages/homeSignUp'>Login for User</Link> 
+            </div>      
+          </div>
+          <div className={styles.headerSaleIcon}>
+            <div className={styles.headerSaleIcoList}>
+               <Link href="/" ><a> <AccountCircleIcon className={styles.facebook} /></a></Link>
+            </div>
+            <div>{props && props !=Empty? <Tag key="tab" closable   onClose={hadelerLoseUser}>
+                {props.data
                       }
-    </Tag>:""}</div>
-         </div>
-         </div>
-       </div>
+                </Tag>:""}
+            </div>
+          </div>
+        </div>
      </div>
      {/* Begin BZ0006 */}
      {/* <div id={styles.slider}>

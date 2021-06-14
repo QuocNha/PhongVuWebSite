@@ -27,3 +27,4 @@ npm i moment
 *BZ00032            130621     Delete for user
 *BZ00033             130621     Export excel  for user
 *BZ00034            130621     Responsive for login user pages
+*BZ00035           140621     Responsive for hearder.
