@@ -18,6 +18,7 @@ import { getUser } from '../../../../redux/actions/userActions';
 import { Empty,Tag } from "antd";
 import {UnorderedListOutlined}  from '@ant-design/icons';
 import Router from 'next/router';
+import Head from 'next/head'
 
 const HeaderPage = (props:any) =>{
   const hadelerLoseUser = (eventkey) =>{
@@ -25,6 +26,11 @@ const HeaderPage = (props:any) =>{
 
   }
   return<React.Fragment>
+       <Head key="Head">
+        <title>PhongVu</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" /> 
+        <link rel="icon" href="/P.png" />
+      </Head>
    <div id={styles.header}>
      <div className={styles.header}>
         <div className={styles.container}>

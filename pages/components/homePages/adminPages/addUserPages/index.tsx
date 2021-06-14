@@ -22,7 +22,7 @@ import Loading from '../../../../../utils/loading';//BZ00028
 
 //END BZ00024 checkAddPages
 
-const AddUserPages = (props) =>{
+const AddUserPages = (...props) =>{
     console.log("props",props);
     const dispatch = useDispatch();//BZ00025
     // BEGIN BZ00023
@@ -119,9 +119,10 @@ const AddUserPages = (props) =>{
                //console.log("data11111111111111111111111111111"+data);
                if(data.status===200){
                 setAddUserSuccess(true);
+                props[0].CallBackIsloading(false);
                 setUserName(data.data.data.email);
                 dispatch(getAllUser(1,10));
-
+                props[0].CallBackIsloading(true);
                }else{
                    setErrorEmail(data.data.errors);
                 //console.log("data11111111111111111111111111111"+data.data.errors); 
@@ -139,7 +140,7 @@ const AddUserPages = (props) =>{
            <div className={styles.containerAddUserTile}>
                <h1>User List</h1>
             </div>
-            {props.checkAddPages===true && addUserSuccess==false ?
+            {props[0].checkAddPages===true && addUserSuccess==false ?
             <React.Fragment>
                 {/* BEGIN BZ00024 */}
             <div className={styles.containerFormUserADD}>
@@ -254,7 +255,7 @@ const AddUserPages = (props) =>{
             </div>
 
             </React.Fragment>
-             :(props.checkAddPages===true && addUserSuccess===true)?
+             :(props[0].checkAddPages===true && addUserSuccess===true)?
              <React.Fragment>
                  <div className={styles.addUserSuccessText}>
                      <h3> <li   onClick={HandelersNextAddUser}>Create  user success : {userName}</li></h3>

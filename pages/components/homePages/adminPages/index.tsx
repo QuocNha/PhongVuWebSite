@@ -27,9 +27,9 @@ import Loading from '../../../../utils/loading';//BZ00028
 import SearchAdmin from '../bodyPage/searchText';
 import deleteUserAPI from '../../../../constant.config.api/deleteUserAPI';
 import exportUserForExcelAPI from '../../../../constant.config.api/exportUserForExcelAPI';
+import Main from '../bodyPage/main';
 
 
-const { SubMenu } = Menu;
 const HomePage = () =>{
     const user = useSelector((state :any) => state.users);
     const usersGetALL = useSelector((state :any) => state.usersGetALL);
@@ -66,14 +66,7 @@ const HomePage = () =>{
         setIsLoading(false);//BZ00028
         dispatch(getAllUser(e,limit));
     }
-    const handlersClickPageAddUserChange= async (e) =>{
-        setPageUser("addUserPages");
 
-    }
-    const handlersClickPageListUserPages= async (e) =>{
-        setPageUser("listUserPages");
-
-    }
     //BEGIN BZ00031
     const handerClickAction= async (index,type,data) =>{
         if(index!=null){
@@ -223,9 +216,13 @@ const HomePage = () =>{
         //END BZ00031
     ];
     //BEGIN BZ00030
+    const CallBackPageUser = useCallback((pageUser) => {
+        setPageUser(pageUser);
+      }, [pageUser]);
     const CallBackIsloading = useCallback((isloading) => {
         setIsLoading(isloading)
       }, [isLoading]);
+    
     
     const CallBackIsUserDataSearch = useCallback((data,checkReset,lengthUserDataSearch) => {
         setUserDataSearch(data);
@@ -259,39 +256,14 @@ const HomePage = () =>{
      <HeaderPage key="HeaderPage" {...user.users}></HeaderPage>
      </div>
      <div id={styles.containerBody}>
-         <div className={styles.containerBodyLeft}>
-         <Menu
-         key="Menu"
-        // onClick={this.handleClick}
-        style={{ width: '100%' ,background:'#223a47'}}
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['sub1']}
-        mode="inline"
-      >
-           <SubMenu key="sub1" icon={<MailOutlined key='MailOutlined'/>} title="User">
-            <Menu.ItemGroup key="g1">
-            <Menu.Item key="1" icon={<MailOutlined key='MailOutlined1'/>} onClick={handlersClickPageListUserPages}>List User</Menu.Item>
-              <Menu.Item key="2" icon={<MailOutlined key='MailOutlined2'/>} onClick={handlersClickPageAddUserChange}>Add User</Menu.Item>
-              {/* <Menu.Item key="3" icon={<MailOutlined />}>Delete User</Menu.Item>
-              <Menu.Item key="4"icon={<MailOutlined />}>Update User</Menu.Item> */}
-            </Menu.ItemGroup> 
-           </SubMenu>
-           <Divider key="Divider" style={{height:'5px',background:"white"}}></Divider>
-           <SubMenu key="sub2" icon={<MailOutlined />} title="User">
-            <Menu.ItemGroup key="g2">
-              <Menu.Item key="5" icon={<MailOutlined />}>Add User</Menu.Item>
-              <Menu.Item key="6" icon={<MailOutlined />}>Delete User</Menu.Item>
-              <Menu.Item key="7"icon={<MailOutlined />}>Update User</Menu.Item>
-            </Menu.ItemGroup> 
-           </SubMenu>
-        </Menu>
-             
-        </div>
+        <React.Fragment>
+        <Main CallBackPageUser={CallBackPageUser}></Main>
+        </React.Fragment>
         {pageUser && pageUser==="listUserPages"?
         <React.Fragment>
             <div className={styles.containerBodyRight}>
-            <div className={styles.containerBodyRightTile}>
-               <h1>User List</h1>
+               <div className={styles.containerBodyRightTile}>
+                 <h1>User List</h1>
                {/* BEGIN BZ00033 */}
                <div>
                 <Button type="primary" onClick={handelerExportExcel}>Export ecxel</Button>
@@ -343,7 +315,10 @@ const HomePage = () =>{
         // BEGIN BZ00022
         pageUser && pageUser==="addUserPages"?
         <React.Fragment>
-            <AddUserPages key="AddUserPages" checkAddPages={true}/>
+            <AddUserPages key="AddUserPages"
+             CallBackIsloading={CallBackIsloading}
+             checkAddPages={true}
+             />
         </React.Fragment>:""}
         {/* END BZ00022 */}
        
