@@ -91,6 +91,34 @@ const homeSignUp = () =>{
       useEffect(() => {
             
     }, []);
+    const a = ['ab', 'aba', 'abc','abcdcba','jdsajdljasl'];
+    for(let i=0;i<a.length;i++){
+        const text=a[i];
+        let checkBoolean=false;
+        if(text.length%2===0){
+        }else{
+            for(let j=0;j<text.length;j++){
+                let z=0;
+                let isCheckTextTrue=false;
+                let isCheckTextFalse=false;
+                //console.log(Math. round( text.length/2));
+                if(j+1>=Math. round( text.length/2)){
+                    continue;
+                }
+                if(text[j]==text[(text.length)-1-(j)]){
+                    isCheckTextTrue=true;
+                    
+                }else{
+                    isCheckTextFalse=true;
+                }
+                checkBoolean=isCheckTextTrue===true && isCheckTextFalse===false?true:false;
+            }
+            
+
+        }
+        console.log("checkBoolean "+ i,checkBoolean);        
+        
+    } 
     // console.log("state111111111111111",state);
     //END BZ00016
     return <React.Fragment>

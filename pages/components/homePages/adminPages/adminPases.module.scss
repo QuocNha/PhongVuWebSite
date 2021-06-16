@@ -1,3 +1,8 @@
+/*
+*BZ00036            150621     Responsive for table.
+
+***************************************************************
+*/
 #containerHeader{
    
 }
@@ -23,6 +28,7 @@
         }
 
     }
+//BEGIN BZ00036    
     @media only screen and (max-width: 1024px) {
       .containerBodyRight{
         .containerBodyRightTile{
@@ -207,9 +213,7 @@
                 row-gap: 0.5em;
                 button{
                     width: 100%;
-                }
-
-                
+                }                
             }
             // grid-template-columns: 1fr 1fr ;
             table, thead, tbody, th, td, tr { 
@@ -352,5 +356,6 @@
       
   
     }
+//END BZ00036    
  
 }

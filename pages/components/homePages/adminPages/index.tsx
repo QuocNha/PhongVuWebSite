@@ -8,7 +8,7 @@
 *BZ00028            070621     Loading For AdminPages
 *BZ00030            100621     Search for list User
 *BZ00031            130621     Delete,Edit for user
-*BZ00033          130621     Export excel  for user
+*BZ00033            130621     Export excel  for user
 
 
 ************************************************************************
@@ -33,6 +33,7 @@ import Main from '../bodyPage/main';
 const HomePage = () =>{
     const user = useSelector((state :any) => state.users);
     const usersGetALL = useSelector((state :any) => state.usersGetALL);
+    const subList=usersGetALL.slinece
     const [checkAddPages,setCheckAddPages] = useState(true);
     const [lengthListUser, setLengthListuser]=useState();
     const [listUser,setListUser] = useState([]);
@@ -249,7 +250,33 @@ const HomePage = () =>{
     //   console.log("listUser",listUser);
     //   console.log("listUser",usersGetALL);
     //   console.log("user",user);
-      
+    const a = ['ab', 'aba', 'abc','abcdcba','jdsajdljasl'];
+    for(let i=0;i<a.length;i++){
+        const text=a[i];
+        let checkBoolean=false;
+        if(text.length%2===0){
+        }else{
+            for(let j=0;j<text.length;j++){
+                let isCheckTextTrue=false;
+                let isCheckTextFalse=false;
+                console.log(Math. round( text.length/2));
+                if(j+1>=Math. round( text.length/2)){
+                    continue;
+                }
+                if(text[j]===text[(text.length)-1-(j)]){
+                    isCheckTextTrue=true;
+                    
+                }else{
+                    isCheckTextFalse=true;
+                }
+                checkBoolean=isCheckTextTrue===true && isCheckTextFalse===false?true:false;
+            }
+            
+
+        }
+        console.log("checkBoolean "+ i,checkBoolean);        
+        
+    }
  return <React.Fragment>
      <div id={styles.containerHeader}>
      <Loading isLoading={isLoading}></Loading>  {/* BZ00028 */}  
@@ -265,15 +292,15 @@ const HomePage = () =>{
                <div className={styles.containerBodyRightTile}>
                  <h1>User List</h1>
                {/* BEGIN BZ00033 */}
-               <div>
-                <Button type="primary" onClick={handelerExportExcel}>Export ecxel</Button>
-               </div>
+                 <div className={styles.containerBodyRightExportButton}>
+                  <Button type="primary" onClick={handelerExportExcel}>Export ecxel</Button>
+                 </div>
                {/* END BZ00033 */}
-               <SearchAdmin 
-               lengthListUser={lengthListUser}
-               CallBackIsloading={CallBackIsloading}
-               CallBackIsUserDataSearch={CallBackIsUserDataSearch}
-               ></SearchAdmin>{/* BZ00030 */}
+                <SearchAdmin 
+                  lengthListUser={lengthListUser}
+                  CallBackIsloading={CallBackIsloading}
+                  CallBackIsUserDataSearch={CallBackIsUserDataSearch}
+                ></SearchAdmin>{/* BZ00030 */}
             </div>
             <div className={styles.containerBodyRightDataUser}>
             {/* BEGIN BZ00020 */}
@@ -322,10 +349,7 @@ const HomePage = () =>{
         </React.Fragment>:""}
         {/* END BZ00022 */}
        
-     </div>
-     
-     
-        
+     </div>   
  </React.Fragment>
 }
 export default HomePage;

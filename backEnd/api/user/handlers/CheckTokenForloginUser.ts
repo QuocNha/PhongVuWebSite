@@ -14,7 +14,7 @@ const CheckTokenForloginUser  = async ( {res,req,body: { user_cookies , check_to
     const decode1 = jwt.verify(user_cookies,process.env.NODE_ENV);
     const user = await User.findById(decode1.id);
      if(!user){
-      res.status(500).json({ data: null, errors: [{ message: "Cant notfound  dataUser" }], })
+      res.status(500).json({ data: null, errors: [{ message: "Cant not found  dataUser" }], })
 
      }else if(user){
         // console.log("user11111111111"+user);

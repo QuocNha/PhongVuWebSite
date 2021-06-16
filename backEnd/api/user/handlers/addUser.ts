@@ -5,8 +5,10 @@
 ************************************************************************
 */
 import dbConnect from '../../../../utils/dbConnect';
-import User from "../../../model/user";
+// import User from "../../../model/user";
 import mongoose from'mongoose';
+import User from '@/models/user';
+
 
 const addUser  = async ( {res,req,body:{email,address1,firstName,lastName,img}}) => {
     console.log("addUser connect");

@@ -1,8 +1,7 @@
-
+/*
+*BZ00037            160621     Responsive  for Menu User
+*/
 .containerSearchtext{
-    display: grid;
-    grid-template-columns: 35%  25% 20% 15%;
-    padding: 1em;
     select {
         appearance: none;
         outline: 0;
@@ -11,7 +10,12 @@
         background: #2c3e50;
         background-image: none;
       }
-    .containerSearchtextSelect{
+    
+    .containerSearchtext320{
+      display: grid;
+      grid-template-columns: 35%  25% 20% 15%;
+      padding: 1em;
+      .containerSearchtextSelect{
         position: relative;
         display: flex;
         width: 20em;
@@ -103,7 +107,7 @@
     .containerTypeUsertextSelect{
         position: relative;
         display: flex;
-        width: 25em;
+        width: 20em;
         height: 3em;
         line-height: 3;
 
@@ -132,7 +136,121 @@
                 color:white;
               }
         }
-
+      }
+      .containerSearchtextSelect{
+        width: 20em;
+        height: 3em;
+        line-height: 3;
+        border-radius: .25em;
+        select {
+            flex: 1;
+            padding: 0 .5em;
+            &::after {
+                top: 0;
+                right: 0;
+                padding: 0 1em;
+            }
+        }
+        
+        
     }
 
+    }  
+//BEGIN BZ00037    
+    @media only screen and (min-width: 320px) {
+       display: grid;
+       .containerSearchtext320{
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         grid-template-rows: 1fr 1fr;
+         column-gap: 0.5rem;
+         row-gap: 0.5rem;
+        .containerSearchtextInput{
+          position: relative;
+          display: flex;
+          width: 20em;
+          height: 3em;
+          background: #2c3e50;
+          overflow: hidden;
+          border-radius: .25em;
+          &::after {
+              position: absolute;
+              top: 0;
+              right: 0;
+              padding: 0 1em;
+              }
+          input{
+              width: 15em;
+              font-size: 1.2rem;
+          }
+        }
+        .containerSearchtextButton{
+          
+          button{
+          
+          width: 10em;
+          height: 3em;
+          line-height: 3;
+          border-radius: .25em;
+          }
+        }
+      }
+    .containerSearchtextNormal{
+         display: none;
+    }
+  }
+  @media only screen and (min-width: 600px) {
+    .containerSearchtext320{
+      text-align: center;
+      padding: 1em;
+      margin-left: 6rem;
+    }  
+
+  }
+  @media only screen and (min-width: 768px) {
+      .containerSearchtext320{
+        margin-left: 3rem;
+       .containerSearchtextInput{
+         position: relative;
+         display: flex;
+         width: 24em;
+         height: 3em;
+         background: #2c3e50;
+         overflow: hidden;
+         border-radius: .25em;
+         &::after {
+             position: absolute;
+             top: 0;
+             right: 0;
+             padding: 0 1em;
+             }
+         input{
+             width: 24em;
+             font-size: 1.2rem;
+         }
+       }
+       .containerSearchtextButton{
+         button{
+         width: 14em;
+         height: 3em;
+         line-height: 3;
+         border-radius: .25em;
+        }
+      }
+      .containerSearchtextSelect{
+        width: 24em;
+        height: 3em;
+        line-height: 3;
+        border-radius: .25em;
+    }
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    .containerSearchtext320{
+      .containerSearchtextButton{
+        text-align: left;
+      }
+    }
+  }  
+//END BZ00037
 }

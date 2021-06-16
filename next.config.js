@@ -21,6 +21,20 @@ module.exports = {
     pageExtensions: ['mdx', 'jsx', 'js', 'ts', 'tsx'],
   }
   module.exports = {
+    
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        
+    },
+    resolve: {
+        modules: [__dirname, 'node_modules'],
+        alias: {
+            reducer: '../../../../utils/loading.tsx',
+        }
+      }
+    }
+
+  module.exports = {
     // Uncomment the line below to enable basePath, pages and
     // redirects will then have a path prefix (`/app` in this case)
     //

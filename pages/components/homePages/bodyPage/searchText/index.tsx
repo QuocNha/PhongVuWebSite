@@ -1,6 +1,7 @@
 /*
 *BZ00030            100621     Search for list User
 *BZ00031            120621     Search Time for User
+*BZ00037            160621     Responsive  for Menu User
 */
 import React,{useState} from "react";
 import styles from './searchText.module.scss';
@@ -116,6 +117,36 @@ const searchText = (...prosp) =>{
 return <React.Fragment>
 
     <div className={styles.containerSearchtext}>
+        <div className={styles.containerSearchtext320}>
+        {/* BEGIN BZ00037   */}
+        <div className={styles.containerSearchtextSelect}>
+                <select
+                  className={styles.containerSearchtextSelect}
+                  id="status"
+                  name="status"
+                  style={{
+                    borderColor: "#928b8b",
+                  }}
+                  value={typeStatus}
+                  onChange={handelerStatus}
+                  
+                >
+                  {/* <option selected>Status</option> */}
+                  <option  value="createAt">CreateAt</option>
+                  <option value="userName">UserName </option>
+                  <option value="userType">User Type</option>
+                </select>
+        </div>
+        <div className={styles.containerSearchtextButton}>
+            <button
+                type="button"
+                id="search"
+                // className="btn btn-warning w-100 btnTimKiem"
+                 onClick={hadlerSearch}
+            >
+                Search<i><SearchOutlined key='SearchOutlined'/></i >
+              </button>
+        </div>
         <div>
            {typeStatus==="userName"?
             <div className={styles.containerSearchtextInput}>
@@ -157,34 +188,6 @@ return <React.Fragment>
           ""}
          
         </div>        
-        <div className={styles.containerSearchtextSelect}>
-        <select
-                  className={styles.containerSearchtextSelect}
-                  id="status"
-                  name="status"
-                  style={{
-                    borderColor: "#928b8b",
-                  }}
-                  value={typeStatus}
-                  onChange={handelerStatus}
-                  
-                >
-                  {/* <option selected>Status</option> */}
-                  <option  value="createAt">CreateAt</option>
-                  <option value="userName">UserName </option>
-                  <option value="userType">User Type</option>
-                </select>
-        </div>
-        <div className={styles.containerSearchtextButton}>
-            <button
-                type="button"
-                id="search"
-                // className="btn btn-warning w-100 btnTimKiem"
-                 onClick={hadlerSearch}
-            >
-                Search<i><SearchOutlined key='SearchOutlined'/></i >
-              </button>
-        </div>
         <div className={styles.containerSearchtextButton}>
             <button
                 type="button"
@@ -194,8 +197,9 @@ return <React.Fragment>
             >
                 Reset<i><SearchOutlined /></i >
               </button>
-        </div>
-
+        </div> 
+      </div>
+      {/* BEGIN BZ00037   */}
     </div>
 </React.Fragment>
 }
