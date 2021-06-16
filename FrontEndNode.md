@@ -29,3 +29,4 @@ npm i moment
 *BZ00034            130621     Responsive for login user pages
 *BZ00035            140621     Responsive for hearder.
 *BZ00036            150621     Responsive for table.
+*BZ00037            160621     Responsive for MenuUser.
